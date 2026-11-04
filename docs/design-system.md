@@ -2,32 +2,40 @@
 
 Chosen on 4 November 2026 from the [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) catalogue (MIT licence). It replaces an earlier "Bold agency" (Brutalism) direction, which was tried and set aside the same day. All values live as CSS custom properties at the top of `theme/wpt-acf/assets/css/main.css`.
 
+Later the same day, the palette was softened to warm creams and browns. The header and home hero were also rebuilt to follow a reference mock-up supplied by Bruce.
+
 ## Style
 
 **Editorial Grid / Magazine**: print-inspired layout with lots of white space.
 
-- **Masthead:** the site name sits centred in large serif type, with the navigation below it set in small, spaced-out capitals.
+- **Header:** the logo or site name sits on the left. On the right are the navigation links in sentence case (the current page underlined in rust) and an optional rust button, set in **Site Settings > Header**. That button is hidden on phones, because the hero and the Contact link already cover it.
+- **Home hero:** a split layout. On the left: a rust capitals label, a large serif headline with an optional italic rust ending, an intro paragraph, then a rust button with an arrow and an underlined text link. On the right: the hero image, filling the half to the edge of the screen. On phones the text comes first, with the image below it in a 4:3 crop.
+- **Side margins:** these grow with screen width (from 1rem up to 4rem), and the logo and hero text always line up.
 - **Asymmetric grids** (roughly 7:4 or 7:5): the headline goes in the wide column, the intro paragraph or image in the narrow one.
 - **Numbered kickers** (01, 02, 03) sit above each section heading, on a thick top rule. They come from CSS counters, so editors don't need extra fields.
 - **Drop cap:** the first paragraph of rich text opens with a large red initial.
 - **Highlights and values:** shown as columns divided by thin rules rather than boxed cards.
 - **Services:** set out as numbered features. **Process steps:** numbered with Roman numerals.
 - **Team members:** set out like bylines, with the name in serif and the role in red capitals.
-- **Call to action:** styled as a large italic pull quote on black.
+- **Call to action:** styled as a large italic pull quote on a sand background.
 - **Motion:** headings fade up gently on load, and sections reveal as you scroll. Both stay subtle (16 to 20px, 500 to 700ms).
 
 ## Colour
 
-Based on the catalogue's Magazine/Blog palette (editorial black plus a single accent). The accent is the catalogue's news red, darkened one step so small text passes WCAG AA comfortably. The catalogue value `#DC2626` measures 4.63:1 on the background.
+A warm, soft palette with no pure blacks or greys. The values are sampled from the reference mock-up, keeping the catalogue's "one accent" editorial approach.
 
 | Role | Value | Use | Contrast |
 |---|---|---|---|
-| Ink | `#18181B` | Text, thick rules, buttons, footer | 17:1 on paper |
-| Ink soft | `#52525B` | Card text, labels | 7.4:1 on paper |
-| Paper | `#FAFAFA` | Page background | |
-| Line | `#D4D4D8` | Thin rules | |
-| Accent | `#B91C1C` | Kickers, drop caps, links, button hover | 6.2:1 on paper; white text on it 6.5:1 |
-| Accent on dark | `#F87171` | Quote marks and hovers in the footer and call to action | 6.4:1 on ink |
+| Ink | `#2B211B` | Headings (warm dark brown) | 14.1:1 on paper |
+| Ink soft | `#5E5249` | Body text, nav links, thick rules | 6.8:1 on paper |
+| Paper | `#F7F2E9` | Page background (cream) | |
+| Card | `#FDFAF4` | Alternate sections | |
+| Muted | `#EFE7DA` | Sand, call to action band | |
+| Line | `#E2D8C8` | Thin rules, text-link underline | |
+| Accent | `#9A3412` | Rust: buttons, kickers, drop caps, italic headline ending | 6.6:1 on paper; white text on it 7.3:1 |
+| Accent hover | `#7C2D12` | Button hover | |
+| Dark | `#3A2B22` | Footer (deep warm brown) | Cream text on it 12.2:1 |
+| Accent on dark | `#F0A37F` | Footer link hover | 6.6:1 on dark |
 
 ## Type
 

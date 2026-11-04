@@ -25,13 +25,13 @@ The block editor is switched off for the whole site, and the content box is remo
 
 | Page     | Template                         | Content areas (ACF)                                      |
 |----------|----------------------------------|----------------------------------------------------------|
-| Home     | `page-templates/home.php`        | Hero, Introduction, Highlights (repeater), Call to action |
+| Home     | `page-templates/home.php`        | Hero (label, heading with highlighted ending, image), Introduction, Highlights (repeater), Call to action |
 | About    | `page-templates/about.php`       | Page header, Our story, Values, Team, Call to action      |
 | Services | `page-templates/services.php`    | Page header, Services (repeater), Process steps, Call to action |
 | Contact  | `page-templates/contact.php`     | Page header, Contact details, Opening hours, Form shortcode, Map |
 | Other    | default (`page.php`)             | Page header, Body text                                    |
 
-**Site Settings** (an ACF Pro options page in WP Admin) holds the logo, phone, email, address, social links and footer text used across the site.
+**Site Settings** (an ACF Pro options page in WP Admin) holds the logo, header button, phone, email, address, social links and footer text used across the site.
 
 ## Set-up
 

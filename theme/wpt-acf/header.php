@@ -42,6 +42,7 @@ $wpt_logo = wpt_option( 'logo' );
 				)
 			);
 			?>
+			<?php echo wpt_link( wpt_option( 'header_button' ), 'button button--small site-nav__button' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</nav>
 	</div>
 </header>

@@ -6,10 +6,20 @@
     "front_page": true,
     "fields": {
         "hero": {
-            "heading": "Clear thinking for growing businesses",
-            "text": "Example Studio helps small and medium-sized organisations plan, build and grow with confidence.",
-            "primary_button": { "title": "Our services", "url": "{{page:services}}", "target": "" },
-            "secondary_button": { "title": "Get in touch", "url": "{{page:contact}}", "target": "" }
+            "kicker": "Brand consultancy",
+            "heading": "Clear thinking for organisations with",
+            "heading_emphasis": "something to say.",
+            "text": "We help organisations understand their audiences, sharpen what they stand for and communicate it with confidence.",
+            "primary_button": {
+                "title": "Start a conversation",
+                "url": "{{page:contact}}",
+                "target": ""
+            },
+            "secondary_button": {
+                "title": "How we work",
+                "url": "{{page:services}}",
+                "target": ""
+            }
         },
         "intro": {
             "heading": "What we do",
@@ -18,15 +28,43 @@
         "highlights": {
             "heading": "Why work with us",
             "items": [
-                { "title": "Practical advice", "text": "Recommendations you can act on straight away, not reports that sit on a shelf.", "link": { "title": "See our services", "url": "{{page:services}}", "target": "" } },
-                { "title": "Senior attention", "text": "You work directly with experienced people from the first meeting to delivery.", "link": { "title": "Meet the team", "url": "{{page:about}}", "target": "" } },
-                { "title": "Honest pricing", "text": "Fixed fees agreed up front, so there are no surprises.", "link": { "title": "Ask for a quote", "url": "{{page:contact}}", "target": "" } }
+                {
+                    "title": "Practical advice",
+                    "text": "Recommendations you can act on straight away, not reports that sit on a shelf.",
+                    "link": {
+                        "title": "See our services",
+                        "url": "{{page:services}}",
+                        "target": ""
+                    }
+                },
+                {
+                    "title": "Senior attention",
+                    "text": "You work directly with experienced people from the first meeting to delivery.",
+                    "link": {
+                        "title": "Meet the team",
+                        "url": "{{page:about}}",
+                        "target": ""
+                    }
+                },
+                {
+                    "title": "Honest pricing",
+                    "text": "Fixed fees agreed up front, so there are no surprises.",
+                    "link": {
+                        "title": "Ask for a quote",
+                        "url": "{{page:contact}}",
+                        "target": ""
+                    }
+                }
             ]
         },
         "cta": {
             "heading": "Ready to talk?",
             "text": "Tell us about your plans and we will come back to you within one working day.",
-            "button": { "title": "Contact us", "url": "{{page:contact}}", "target": "" }
+            "button": {
+                "title": "Contact us",
+                "url": "{{page:contact}}",
+                "target": ""
+            }
         }
     }
 }

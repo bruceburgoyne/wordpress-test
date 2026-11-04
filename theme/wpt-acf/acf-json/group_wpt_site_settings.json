@@ -39,6 +39,39 @@
             "aria-label": ""
         },
         {
+            "key": "field_site_settings_tab_header",
+            "label": "Header",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_site_settings_header_button",
+            "label": "Header button",
+            "name": "header_button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "Button at the right of the navigation. Leave blank to hide it.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "type": "tab",
             "name": "",
             "label": "Contact",
@@ -256,5 +289,5 @@
     "active": true,
     "description": "Global settings shown in the header and footer.",
     "show_in_rest": 0,
-    "modified": 1762250000
+    "modified": 1762264800
 }

@@ -12,18 +12,42 @@ $wpt_intro      = wpt_field( 'intro' );
 $wpt_highlights = wpt_field( 'highlights' );
 ?>
 
-<section class="hero<?php echo ! empty( $wpt_hero['image'] ) ? ' hero--image' : ''; ?>">
-	<?php echo wpt_image( $wpt_hero['image'] ?? null, 'full', 'hero__bg' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-	<div class="container hero__content">
-		<h1><?php echo esc_html( ! empty( $wpt_hero['heading'] ) ? $wpt_hero['heading'] : get_bloginfo( 'name' ) ); ?></h1>
+<section class="hero<?php echo ! empty( $wpt_hero['image'] ) ? ' hero--split' : ''; ?>">
+	<div class="hero__content">
+		<?php if ( ! empty( $wpt_hero['kicker'] ) ) : ?>
+			<p class="kicker"><?php echo esc_html( $wpt_hero['kicker'] ); ?></p>
+		<?php endif; ?>
+		<h1>
+			<?php echo esc_html( ! empty( $wpt_hero['heading'] ) ? $wpt_hero['heading'] : get_bloginfo( 'name' ) ); ?>
+			<?php if ( ! empty( $wpt_hero['heading_emphasis'] ) ) : ?>
+				<em><?php echo esc_html( $wpt_hero['heading_emphasis'] ); ?></em>
+			<?php endif; ?>
+		</h1>
 		<?php if ( ! empty( $wpt_hero['text'] ) ) : ?>
-			<p class="lead"><?php echo wpt_text( $wpt_hero['text'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
+			<p class="hero__text"><?php echo wpt_text( $wpt_hero['text'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
 		<?php endif; ?>
 		<div class="button-row">
-			<?php echo wpt_link( $wpt_hero['primary_button'] ?? null ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
-			<?php echo wpt_link( $wpt_hero['secondary_button'] ?? null, 'button button--ghost' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<?php echo wpt_link( $wpt_hero['primary_button'] ?? null, 'button button--arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<?php echo wpt_link( $wpt_hero['secondary_button'] ?? null, 'text-link' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</div>
 	</div>
+	<?php if ( ! empty( $wpt_hero['image'] ) ) : ?>
+		<div class="hero__media">
+			<?php
+			echo wp_get_attachment_image( // phpcs:ignore WordPress.Security.EscapeOutput
+				$wpt_hero['image']['ID'],
+				'full',
+				false,
+				array(
+					'class'         => 'hero__image',
+					'sizes'         => '(min-width: 56rem) 50vw, 100vw',
+					'fetchpriority' => 'high',
+					'loading'       => 'eager',
+				)
+			);
+			?>
+		</div>
+	<?php endif; ?>
 </section>
 
 <?php if ( ! empty( $wpt_intro['heading'] ) || ! empty( $wpt_intro['text'] ) ) : ?>

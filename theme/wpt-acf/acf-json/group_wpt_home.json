@@ -34,6 +34,26 @@
             "layout": "block",
             "sub_fields": [
                 {
+                    "key": "field_home_hero_kicker",
+                    "label": "Label above heading",
+                    "name": "kicker",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Short label in capitals, for example \"Brand consultancy\".",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": 40,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "type": "text",
                     "name": "heading",
                     "label": "Heading",
@@ -50,6 +70,26 @@
                     "placeholder": "",
                     "key": "field_home_hero_heading",
                     "aria-label": ""
+                },
+                {
+                    "key": "field_home_hero_heading_emphasis",
+                    "label": "Heading ending (highlighted)",
+                    "name": "heading_emphasis",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Optional. Shown after the heading in italic accent colour, for example \"something to say.\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 },
                 {
                     "type": "textarea",
@@ -75,7 +115,7 @@
                     "type": "image",
                     "name": "image",
                     "label": "Image",
-                    "instructions": "Wide image, at least 1600px across.",
+                    "instructions": "Shown full height on the right of the hero. Landscape or portrait, at least 1200px across.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -109,7 +149,7 @@
                 {
                     "type": "link",
                     "name": "secondary_button",
-                    "label": "Secondary button",
+                    "label": "Secondary link",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -453,5 +493,5 @@
     "active": true,
     "description": "Content areas for the Home page template.",
     "show_in_rest": 0,
-    "modified": 1762250000
+    "modified": 1762264800
 }
