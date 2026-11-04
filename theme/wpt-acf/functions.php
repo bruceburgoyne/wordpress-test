@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WPT_VERSION', '0.2.0' );
+define( 'WPT_VERSION', '0.3.0' );
 
 require_once get_template_directory() . '/inc/editor.php';
 require_once get_template_directory() . '/inc/acf.php';
@@ -31,11 +31,11 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		// Space Grotesk (headings) and Archivo (body). Before going live, consider
+		// Libre Bodoni (headings) and Public Sans (body). Before going live, consider
 		// self-hosting these: loading from Google sends visitor IP addresses to Google.
 		wp_enqueue_style(
 			'wpt-fonts',
-			'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap',
+			'https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;1,400;1,500&family=Public+Sans:wght@400;600&display=swap',
 			array(),
 			null
 		);
