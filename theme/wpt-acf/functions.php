@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WPT_VERSION', '0.1.0' );
+define( 'WPT_VERSION', '0.2.0' );
 
 require_once get_template_directory() . '/inc/editor.php';
 require_once get_template_directory() . '/inc/acf.php';
@@ -31,11 +31,29 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
+		// Space Grotesk (headings) and Archivo (body). Before going live, consider
+		// self-hosting these: loading from Google sends visitor IP addresses to Google.
+		wp_enqueue_style(
+			'wpt-fonts',
+			'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap',
+			array(),
+			null
+		);
 		wp_enqueue_style(
 			'wpt-main',
 			get_template_directory_uri() . '/assets/css/main.css',
-			array(),
+			array( 'wpt-fonts' ),
 			WPT_VERSION
+		);
+		wp_enqueue_script(
+			'wpt-motion',
+			get_template_directory_uri() . '/assets/js/motion.js',
+			array(),
+			WPT_VERSION,
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
 		);
 	}
 );

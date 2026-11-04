@@ -26,6 +26,22 @@ $wpt_highlights = wpt_field( 'highlights' );
 	</div>
 </section>
 
+<?php
+// Marquee strip built from the highlight titles. Decorative only, so hidden from screen readers.
+$wpt_marquee = ! empty( $wpt_highlights['items'] ) ? array_filter( wp_list_pluck( $wpt_highlights['items'], 'title' ) ) : array();
+if ( $wpt_marquee ) :
+	?>
+	<div class="marquee" aria-hidden="true">
+		<?php for ( $wpt_i = 0; $wpt_i < 2; $wpt_i++ ) : ?>
+			<div class="marquee__track">
+				<?php foreach ( array_merge( $wpt_marquee, $wpt_marquee ) as $wpt_word ) : ?>
+					<span><?php echo esc_html( $wpt_word ); ?></span>
+				<?php endforeach; ?>
+			</div>
+		<?php endfor; ?>
+	</div>
+<?php endif; ?>
+
 <?php if ( ! empty( $wpt_intro['heading'] ) || ! empty( $wpt_intro['text'] ) ) : ?>
 	<section class="section">
 		<div class="container container--narrow">
