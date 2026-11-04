@@ -1,0 +1,34 @@
+{
+    "title": "Services",
+    "slug": "services",
+    "template": "page-templates/services.php",
+    "menu_order": 2,
+    "fields": {
+        "page_header": {
+            "heading": "Our services",
+            "intro": "Three ways we can help, each tailored to where your organisation is today."
+        },
+        "services": {
+            "heading": "",
+            "items": [
+                { "title": "Strategy", "summary": "A clear plan for the next three years.", "details": "<p>We review where you are, agree where you want to be, and set out the steps to get there.</p>" },
+                { "title": "Brand and messaging", "summary": "Say who you are, clearly and consistently.", "details": "<p>We help you define your purpose and values, and turn them into messages your audiences understand.</p>" },
+                { "title": "Digital", "summary": "A website that does its job.", "details": "<p>From structure and content to build and launch, we make sites that are easy to use and easy to manage.</p>" }
+            ]
+        },
+        "process": {
+            "heading": "How we work",
+            "steps": [
+                { "title": "Listen", "text": "We start by understanding your goals and challenges." },
+                { "title": "Plan", "text": "We agree a scope, timeline and fixed fee." },
+                { "title": "Deliver", "text": "We do the work, keeping you involved at each stage." },
+                { "title": "Review", "text": "We check results against the goals we set together." }
+            ]
+        },
+        "cta": {
+            "heading": "Not sure which service you need?",
+            "text": "Get in touch and we will help you work it out.",
+            "button": { "title": "Contact us", "url": "{{page:contact}}", "target": "" }
+        }
+    }
+}

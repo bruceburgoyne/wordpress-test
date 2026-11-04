@@ -1,0 +1,32 @@
+{
+    "title": "Home",
+    "slug": "home",
+    "template": "page-templates/home.php",
+    "menu_order": 0,
+    "front_page": true,
+    "fields": {
+        "hero": {
+            "heading": "Clear thinking for growing businesses",
+            "text": "Example Studio helps small and medium-sized organisations plan, build and grow with confidence.",
+            "primary_button": { "title": "Our services", "url": "{{page:services}}", "target": "" },
+            "secondary_button": { "title": "Get in touch", "url": "{{page:contact}}", "target": "" }
+        },
+        "intro": {
+            "heading": "What we do",
+            "text": "<p>We work alongside leadership teams to turn ambition into practical plans. Every project starts with listening, and ends with something you can use.</p>"
+        },
+        "highlights": {
+            "heading": "Why work with us",
+            "items": [
+                { "title": "Practical advice", "text": "Recommendations you can act on straight away, not reports that sit on a shelf.", "link": { "title": "See our services", "url": "{{page:services}}", "target": "" } },
+                { "title": "Senior attention", "text": "You work directly with experienced people from the first meeting to delivery.", "link": { "title": "Meet the team", "url": "{{page:about}}", "target": "" } },
+                { "title": "Honest pricing", "text": "Fixed fees agreed up front, so there are no surprises.", "link": { "title": "Ask for a quote", "url": "{{page:contact}}", "target": "" } }
+            ]
+        },
+        "cta": {
+            "heading": "Ready to talk?",
+            "text": "Tell us about your plans and we will come back to you within one working day.",
+            "button": { "title": "Contact us", "url": "{{page:contact}}", "target": "" }
+        }
+    }
+}

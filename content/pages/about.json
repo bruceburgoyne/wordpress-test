@@ -1,0 +1,36 @@
+{
+    "title": "About",
+    "slug": "about",
+    "template": "page-templates/about.php",
+    "menu_order": 1,
+    "fields": {
+        "page_header": {
+            "heading": "About us",
+            "intro": "A small, experienced team that cares about doing good work for good organisations."
+        },
+        "story": {
+            "heading": "Our story",
+            "text": "<p>Example Studio was set up to give growing organisations access to the kind of advice usually reserved for much larger companies.</p><p>We keep the team small on purpose, so clients always know who they are working with.</p>"
+        },
+        "values": {
+            "heading": "What we believe",
+            "items": [
+                { "title": "Listen first", "text": "Good advice starts with understanding the problem properly." },
+                { "title": "Keep it simple", "text": "Plain language and clear plans beat complexity every time." },
+                { "title": "Do the right thing", "text": "We only take on work we believe will make a real difference." }
+            ]
+        },
+        "team": {
+            "heading": "The team",
+            "members": [
+                { "name": "Alex Example", "role": "Founder", "bio": "Alex has 20 years of experience helping organisations plan for growth." },
+                { "name": "Sam Example", "role": "Project lead", "bio": "Sam keeps projects on track and makes sure nothing falls through the cracks." }
+            ]
+        },
+        "cta": {
+            "heading": "Want to know more?",
+            "text": "We are always happy to have an informal conversation.",
+            "button": { "title": "Get in touch", "url": "{{page:contact}}", "target": "" }
+        }
+    }
+}

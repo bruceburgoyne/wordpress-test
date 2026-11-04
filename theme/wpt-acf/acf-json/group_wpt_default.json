@@ -1,0 +1,113 @@
+{
+    "key": "group_wpt_default",
+    "title": "Standard page",
+    "fields": [
+        {
+            "type": "group",
+            "name": "page_header",
+            "label": "Page header",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "Leave blank to use the page title.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_default_page_header_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "intro",
+                    "label": "Introduction",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_default_page_header_intro",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_default_page_header",
+            "aria-label": ""
+        },
+        {
+            "type": "wysiwyg",
+            "name": "body",
+            "label": "Body text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0,
+            "default_value": "",
+            "key": "field_default_body",
+            "aria-label": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "author",
+        "format",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": true,
+    "description": "Fallback fields for pages using the default template.",
+    "show_in_rest": 0,
+    "modified": 1762250000
+}

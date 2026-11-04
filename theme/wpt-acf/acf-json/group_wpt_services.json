@@ -1,0 +1,474 @@
+{
+    "key": "group_wpt_services",
+    "title": "Services page",
+    "fields": [
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Page header",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_services_tab0",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "page_header",
+            "label": "Page header",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "Leave blank to use the page title.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_services_page_header_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "intro",
+                    "label": "Introduction",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_services_page_header_intro",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_services_page_header",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Services",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_services_tab2",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "services",
+            "label": "Services",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_services_services_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "repeater",
+                    "name": "items",
+                    "label": "Services",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add service",
+                    "rows_per_page": 20,
+                    "pagination": 0,
+                    "sub_fields": [
+                        {
+                            "type": "text",
+                            "name": "title",
+                            "label": "Title",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_services_services_items_title",
+                            "aria-label": "",
+                            "parent_repeater": "field_services_services_items"
+                        },
+                        {
+                            "type": "textarea",
+                            "name": "summary",
+                            "label": "Summary",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_services_services_items_summary",
+                            "aria-label": "",
+                            "parent_repeater": "field_services_services_items"
+                        },
+                        {
+                            "type": "wysiwyg",
+                            "name": "details",
+                            "label": "Details",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0,
+                            "default_value": "",
+                            "key": "field_services_services_items_details",
+                            "aria-label": "",
+                            "parent_repeater": "field_services_services_items"
+                        },
+                        {
+                            "type": "image",
+                            "name": "image",
+                            "label": "Image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "preview_size": "medium",
+                            "mime_types": "",
+                            "key": "field_services_services_items_image",
+                            "aria-label": "",
+                            "parent_repeater": "field_services_services_items"
+                        }
+                    ],
+                    "key": "field_services_services_items",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_services_services",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Process",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_services_tab4",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "process",
+            "label": "How we work",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_services_process_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "repeater",
+                    "name": "steps",
+                    "label": "Steps",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add step",
+                    "rows_per_page": 20,
+                    "pagination": 0,
+                    "sub_fields": [
+                        {
+                            "type": "text",
+                            "name": "title",
+                            "label": "Title",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_services_process_steps_title",
+                            "aria-label": "",
+                            "parent_repeater": "field_services_process_steps"
+                        },
+                        {
+                            "type": "textarea",
+                            "name": "text",
+                            "label": "Text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_services_process_steps_text",
+                            "aria-label": "",
+                            "parent_repeater": "field_services_process_steps"
+                        }
+                    ],
+                    "key": "field_services_process_steps",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_services_process",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Call to action",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_services_tab6",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "cta",
+            "label": "Call to action band",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_services_cta_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "text",
+                    "label": "Text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_services_cta_text",
+                    "aria-label": ""
+                },
+                {
+                    "type": "link",
+                    "name": "button",
+                    "label": "Button",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "key": "field_services_cta_button",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_services_cta",
+            "aria-label": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/services.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "author",
+        "format",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": true,
+    "description": "Content areas for the Services page template.",
+    "show_in_rest": 0,
+    "modified": 1762250000
+}

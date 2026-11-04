@@ -1,0 +1,442 @@
+{
+    "key": "group_wpt_contact",
+    "title": "Contact page",
+    "fields": [
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Page header",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_contact_tab0",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "page_header",
+            "label": "Page header",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "Leave blank to use the page title.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_contact_page_header_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "intro",
+                    "label": "Introduction",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_contact_page_header_intro",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_contact_page_header",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Contact details",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_contact_tab2",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "details",
+            "label": "Contact details",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_contact_details_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "text",
+                    "label": "Text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_contact_details_text",
+                    "aria-label": ""
+                },
+                {
+                    "type": "true_false",
+                    "name": "show_global_details",
+                    "label": "Show phone, email and address from Site Settings",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "ui": 1,
+                    "message": "",
+                    "key": "field_contact_details_show_global_details",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_contact_details",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Opening hours",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_contact_tab4",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "hours",
+            "label": "Opening hours",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_contact_hours_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "repeater",
+                    "name": "rows",
+                    "label": "Rows",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add row",
+                    "rows_per_page": 20,
+                    "pagination": 0,
+                    "sub_fields": [
+                        {
+                            "type": "text",
+                            "name": "days",
+                            "label": "Days",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_contact_hours_rows_days",
+                            "aria-label": "",
+                            "parent_repeater": "field_contact_hours_rows"
+                        },
+                        {
+                            "type": "text",
+                            "name": "times",
+                            "label": "Times",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_contact_hours_rows_times",
+                            "aria-label": "",
+                            "parent_repeater": "field_contact_hours_rows"
+                        }
+                    ],
+                    "key": "field_contact_hours_rows",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_contact_hours",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Form",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_contact_tab6",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "form",
+            "label": "Enquiry form",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_contact_form_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "text",
+                    "name": "shortcode",
+                    "label": "Form shortcode",
+                    "instructions": "Paste a shortcode from a form plugin, for example [contact-form-7 id=\"123\"].",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_contact_form_shortcode",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_contact_form",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Map",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_contact_tab8",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "map",
+            "label": "Map",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "textarea",
+                    "name": "embed",
+                    "label": "Map embed code",
+                    "instructions": "Paste the iframe embed code from Google Maps or OpenStreetMap.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 4,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_contact_map_embed",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_contact_map",
+            "aria-label": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/contact.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "author",
+        "format",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": true,
+    "description": "Content areas for the Contact page template.",
+    "show_in_rest": 0,
+    "modified": 1762250000
+}

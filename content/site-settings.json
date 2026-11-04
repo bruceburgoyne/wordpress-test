@@ -1,0 +1,10 @@
+{
+    "phone": "01234 567890",
+    "email": "hello@example.com",
+    "address": "1 Example Street\nExampletown\nEX1 2MP",
+    "social_links": [
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/" },
+        { "label": "Instagram", "url": "https://www.instagram.com/" }
+    ],
+    "footer_text": "Test content for the wordpress-test project. Replace before any real use."
+}

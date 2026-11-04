@@ -1,0 +1,260 @@
+{
+    "key": "group_wpt_site_settings",
+    "title": "Site settings",
+    "fields": [
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Branding",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_site_settings_tab0",
+            "aria-label": ""
+        },
+        {
+            "type": "image",
+            "name": "logo",
+            "label": "Logo",
+            "instructions": "Leave blank to show the site title as text.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "preview_size": "medium",
+            "mime_types": "",
+            "key": "field_site_settings_logo",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Contact",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_site_settings_tab2",
+            "aria-label": ""
+        },
+        {
+            "type": "text",
+            "name": "phone",
+            "label": "Phone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "key": "field_site_settings_phone",
+            "aria-label": ""
+        },
+        {
+            "type": "email",
+            "name": "email",
+            "label": "Email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "key": "field_site_settings_email",
+            "aria-label": ""
+        },
+        {
+            "type": "textarea",
+            "name": "address",
+            "label": "Address",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "key": "field_site_settings_address",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Social",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_site_settings_tab6",
+            "aria-label": ""
+        },
+        {
+            "type": "repeater",
+            "name": "social_links",
+            "label": "Social links",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add link",
+            "rows_per_page": 20,
+            "pagination": 0,
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "label",
+                    "label": "Label",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_site_settings_social_links_label",
+                    "aria-label": "",
+                    "parent_repeater": "field_site_settings_social_links"
+                },
+                {
+                    "type": "url",
+                    "name": "url",
+                    "label": "URL",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "key": "field_site_settings_social_links_url",
+                    "aria-label": "",
+                    "parent_repeater": "field_site_settings_social_links"
+                }
+            ],
+            "key": "field_site_settings_social_links",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Footer",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_site_settings_tab8",
+            "aria-label": ""
+        },
+        {
+            "type": "textarea",
+            "name": "footer_text",
+            "label": "Footer text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 2,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "key": "field_site_settings_footer_text",
+            "aria-label": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "site-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "author",
+        "format",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": true,
+    "description": "Global settings shown in the header and footer.",
+    "show_in_rest": 0,
+    "modified": 1762250000
+}

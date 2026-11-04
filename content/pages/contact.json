@@ -1,0 +1,32 @@
+{
+    "title": "Contact",
+    "slug": "contact",
+    "template": "page-templates/contact.php",
+    "menu_order": 3,
+    "fields": {
+        "page_header": {
+            "heading": "Contact us",
+            "intro": "Call, email or send us a message. We reply within one working day."
+        },
+        "details": {
+            "heading": "Get in touch",
+            "text": "We are based in Exampletown and work with organisations across the UK.",
+            "show_global_details": true
+        },
+        "hours": {
+            "heading": "Opening hours",
+            "rows": [
+                { "days": "Monday to Thursday", "times": "9am to 5.30pm" },
+                { "days": "Friday", "times": "9am to 4pm" },
+                { "days": "Weekends", "times": "Closed" }
+            ]
+        },
+        "form": {
+            "heading": "Send us a message",
+            "shortcode": ""
+        },
+        "map": {
+            "embed": ""
+        }
+    }
+}
