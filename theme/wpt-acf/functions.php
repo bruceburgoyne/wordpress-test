@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WPT_VERSION', '0.3.0' );
+define( 'WPT_VERSION', '0.4.0' );
 
 require_once get_template_directory() . '/inc/editor.php';
 require_once get_template_directory() . '/inc/acf.php';
@@ -55,5 +55,26 @@ add_action(
 				'strategy'  => 'defer',
 			)
 		);
+		wp_enqueue_script(
+			'wpt-menu',
+			get_template_directory_uri() . '/assets/js/menu.js',
+			array(),
+			WPT_VERSION,
+			array(
+				'in_footer' => true,
+				'strategy'  => 'defer',
+			)
+		);
 	}
+);
+
+// The primary menu is output twice (header and mobile panel). Drop the
+// list item IDs from the panel copy so the page has no duplicate IDs.
+add_filter(
+	'nav_menu_item_id',
+	function ( $id, $item, $args ) {
+		return ( isset( $args->menu_class ) && 'mobile-panel__list' === $args->menu_class ) ? '' : $id;
+	},
+	10,
+	3
 );

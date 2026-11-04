@@ -360,3 +360,195 @@ address { font-style: normal; }
 	from { opacity: 0; transform: translateY(20px); }
 	to { opacity: 1; transform: none; }
 }
+
+/*
+ * Mobile menu (below 48rem, only when JavaScript is running).
+ * A panel slides in from the left and pushes the page across. Once the
+ * panel is in place, the links fade in one after another.
+ */
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+:root {
+	--panel-width: min(84vw, 22rem);
+	--panel-duration: 450ms;
+	--panel-ease: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.nav-toggle,
+.mobile-panel__close {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	background: none;
+	border: 0;
+	border-radius: var(--radius);
+	color: var(--colour-ink);
+	cursor: pointer;
+}
+
+/* Burger: three bars built from one span and its pseudo-elements */
+.nav-toggle__bars,
+.nav-toggle__bars span,
+.nav-toggle__bars::before,
+.nav-toggle__bars::after { display: block; width: 24px; height: 2px; background: currentColor; border-radius: 1px; }
+.nav-toggle__bars { position: relative; background: none; }
+.nav-toggle__bars span { position: absolute; top: 0; }
+.nav-toggle__bars::before,
+.nav-toggle__bars::after { content: ""; position: absolute; left: 0; }
+.nav-toggle__bars::before { top: -7px; }
+.nav-toggle__bars::after { top: 7px; width: 16px; }
+
+/* Close: a cross */
+.mobile-panel__close { position: absolute; top: 1rem; right: 1rem; display: inline-flex; }
+.mobile-panel__close-icon { position: relative; width: 22px; height: 22px; }
+.mobile-panel__close-icon::before,
+.mobile-panel__close-icon::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: currentColor;
+	border-radius: 1px;
+}
+.mobile-panel__close-icon::before { transform: rotate(45deg); }
+.mobile-panel__close-icon::after { transform: rotate(-45deg); }
+.nav-toggle:hover,
+.mobile-panel__close:hover { color: var(--colour-accent); }
+
+/* The panel */
+.mobile-panel {
+	position: fixed;
+	inset: 0 auto 0 0;
+	z-index: 50;
+	width: var(--panel-width);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2.5rem;
+	padding: 5rem 2rem 3rem;
+	overflow-y: auto;
+	background: var(--colour-muted);
+	border-right: var(--rule-thin);
+	transform: translateX(-100%);
+	visibility: hidden;
+	/* Closing: slide out, then hide once off screen */
+	transition: transform var(--panel-duration) var(--panel-ease), visibility 0s linear var(--panel-duration);
+}
+.menu-open .mobile-panel {
+	transform: none;
+	visibility: visible;
+	transition: transform var(--panel-duration) var(--panel-ease), visibility 0s;
+}
+
+/* The page is pushed across by the panel's width */
+.site-wrap {
+	position: relative;
+	transition: transform var(--panel-duration) var(--panel-ease);
+}
+.menu-open .site-wrap { transform: translateX(var(--panel-width)); }
+.menu-open,
+.menu-open body { overflow: hidden; }
+
+/* Soft wash over the pushed page; clicking it closes the menu */
+.site-wrap::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 40;
+	background: rgba(43, 33, 27, 0.18);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--panel-duration) var(--panel-ease);
+}
+.menu-open .site-wrap::after { opacity: 1; }
+
+/* Links: centred, large serif, staggered entrance */
+.mobile-panel__nav { width: 100%; }
+.mobile-panel__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.25rem;
+	text-align: center;
+}
+.mobile-panel__list > li,
+.mobile-panel__cta {
+	opacity: 0;
+	transform: translateY(14px);
+	transition: opacity 200ms, transform 200ms;
+}
+.menu-open .mobile-panel__list > li,
+.menu-open .mobile-panel__cta {
+	opacity: 1;
+	transform: none;
+	/* Wait until the panel is mostly in, then stagger each item */
+	transition: opacity 450ms var(--motion-ease), transform 450ms var(--motion-ease);
+	transition-delay: calc(var(--panel-duration) * 0.7 + var(--i, 0) * 80ms);
+}
+
+/* Underline grows out from the centre on hover and focus */
+.mobile-panel__list a {
+	position: relative;
+	display: inline-block;
+	padding-block: 0.35rem;
+	font-family: var(--font-heading);
+	font-size: clamp(1.9rem, 8vw, 2.4rem);
+	line-height: 1.15;
+	color: var(--colour-ink);
+	text-decoration: none;
+}
+.mobile-panel__list a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 2px;
+	background: var(--colour-accent);
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform 350ms var(--motion-ease);
+}
+.mobile-panel__list a:hover,
+.mobile-panel__list a:focus-visible { color: var(--colour-accent); }
+.mobile-panel__list a:hover::after,
+.mobile-panel__list a:focus-visible::after,
+.mobile-panel__list .current-menu-item > a::after { transform: scaleX(1); }
+.mobile-panel__list a:focus-visible { outline: none; }
+
+/* Swap the desktop nav for the burger on small screens (JavaScript only) */
+@media (max-width: 47.99rem) {
+	.has-js .site-nav { display: none; }
+	.has-js .nav-toggle { display: inline-flex; }
+}
+@media (min-width: 48rem) {
+	.mobile-panel { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mobile-panel,
+	.menu-open .mobile-panel,
+	.site-wrap,
+	.site-wrap::after,
+	.mobile-panel__list > li,
+	.mobile-panel__cta,
+	.menu-open .mobile-panel__list > li,
+	.menu-open .mobile-panel__cta,
+	.mobile-panel__list a::after { transition: none; }
+}

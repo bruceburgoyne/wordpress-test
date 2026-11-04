@@ -46,6 +46,7 @@ $wpt_footer  = wpt_option( 'footer_text' );
 		<div class="container site-footer__small"><?php echo wpt_text( $wpt_footer ); // phpcs:ignore WordPress.Security.EscapeOutput ?></div>
 	<?php endif; ?>
 </footer>
+</div><!-- .site-wrap -->
 
 <?php wp_footer(); ?>
 </body>

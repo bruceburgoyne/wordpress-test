@@ -46,8 +46,20 @@ The catalogue's "Magazine Style" pairing:
 
 Both load from Google Fonts. Before going live, self-host them, because Google Fonts sends visitor IP addresses to Google (a UK GDPR consideration).
 
+## Mobile menu
+
+Below 48rem (768px), a burger button replaces the header navigation.
+
+- **Panel:** slides in from the left, using the sand background. It's 84% of the screen width, up to a maximum of 22rem, and pushes the whole page across by the same amount. A soft brown wash dims the pushed page.
+- **Timing:** the panel takes 450ms. Once it's about 70% in, the links and the header button fade up one after another, 80ms apart.
+- **Links:** centred, in large Libre Bodoni. On hover or keyboard focus a rust underline grows out from the centre (350ms), and the text turns rust. The current page keeps its underline.
+- **Closing:** the × button, Escape, tapping the pushed page, choosing a link, or widening the screen past the breakpoint all close the menu.
+- **Accessibility:** the panel is a labelled dialog. While it's open, the page behind is inert, so keyboard focus can't leave the panel. Focus moves to the first link on open and back to the burger on close.
+- **Without JavaScript:** the normal header links stay visible, and there's no burger.
+- Files: `header.php` (markup), `assets/js/menu.js` (behaviour), and the "Mobile menu" section at the end of `main.css`.
+
 ## Accessibility
 
-- All motion sits inside `prefers-reduced-motion: no-preference`. Scroll reveals only run when JavaScript confirms the visitor hasn't asked for reduced motion, so content is never hidden without JavaScript.
+- All motion sits inside `prefers-reduced-motion: no-preference`, and the mobile menu opens and closes instantly for visitors who prefer reduced motion. Scroll reveals only run when JavaScript confirms the visitor hasn't asked for reduced motion, so content is never hidden without JavaScript.
 - Focus ring: 2px red outline with offset. Buttons are at least 44px tall.
 - On small screens, the masthead doesn't stick, and the asymmetric grids stack into a single column.
