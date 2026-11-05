@@ -28,7 +28,7 @@ The content box is removed from pages, so ACF fields are the only way to edit a 
 
 | Page     | Template                         | Content areas (ACF)                                      |
 |----------|----------------------------------|----------------------------------------------------------|
-| Home     | `page-templates/home.php`        | Hero (label, heading with highlighted ending, image), Introduction, Highlights (repeater), Call to action |
+| Home     | `page-templates/home.php`        | Hero (label, heading with highlighted ending, image), Introduction, Services (tiles), Highlights (repeater), Call to action |
 | About    | `page-templates/about.php`       | Page header, Our story, Values, Team, Call to action      |
 | Services | `page-templates/services.php`    | Page header, Services (repeater, each linked to its service page), Process steps, Call to action |
 | Strategy, Brand, Digital | `page-templates/service.php` (children of Services) | Page header, Image, Overview, What's included (repeater), Common questions (repeater), Call to action |
@@ -43,7 +43,8 @@ The content box is removed from pages, so ACF fields are the only way to edit a 
 Each service has its own page at `/services/{name}/`, using the **Service** template.
 
 - **Adding one:** create a page, set **Template** to Service and **Parent** to Services, and fill in its fields. Then on the Services page, choose it in that service's **Service page** field. The service's title and a "Find out more" link will point to it.
-- **Other services:** each service page lists its sibling service pages automatically, using their introductions.
+- **Home page tiles:** the Home page shows each service page as a tile (its image if set, title, introduction and a "Find out more" link). Use the Home page's **Services** tab to change the heading, add an introduction, hide the section, or choose which services appear and in what order. Leave the choice empty to show every service page.
+- **Other services:** each service page shows the other service pages as the same tiles.
 - The header shows "Services" above the title as a link back, and the Services menu item stays underlined.
 
 ## Blog

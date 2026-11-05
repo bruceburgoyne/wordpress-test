@@ -77,3 +77,33 @@ function wpt_image( $image, $size = 'large', $class = '' ) {
 function wpt_text( $text ) {
 	return $text ? nl2br( esc_html( $text ) ) : '';
 }
+
+/**
+ * Published pages that use the Service template, in menu order.
+ *
+ * @param int[] $ids Optional page IDs to return instead, in this order
+ *                   (unpublished ones are dropped).
+ * @return WP_Post[]
+ */
+function wpt_service_pages( $ids = array() ) {
+	if ( $ids ) {
+		return array_values(
+			array_filter(
+				array_map( 'get_post', $ids ),
+				function ( $page ) {
+					return $page && 'publish' === $page->post_status;
+				}
+			)
+		);
+	}
+	return get_pages(
+		array(
+			'meta_key'     => '_wp_page_template', // phpcs:ignore WordPress.DB.SlowDBQuery
+			'meta_value'   => 'page-templates/service.php', // phpcs:ignore WordPress.DB.SlowDBQuery
+			'sort_column'  => 'menu_order,post_title',
+			// Service pages are children of Services; without this, get_pages()
+			// drops any page whose parent isn't in the results.
+			'hierarchical' => false,
+		)
+	);
+}

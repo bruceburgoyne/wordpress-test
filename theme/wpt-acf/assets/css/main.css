@@ -251,11 +251,9 @@ a:hover { text-decoration-thickness: 2px; }
 .service__image { aspect-ratio: 4 / 3; object-fit: cover; }
 .service__media { display: block; }
 
-/* Links from a service (or card) title to its own page */
-.service__link,
-.card__link { color: inherit; text-decoration: none; }
-.service__link:hover,
-.card__link:hover { color: var(--colour-accent); text-decoration: underline; text-decoration-thickness: 1px; }
+/* Links from a service title to its own page */
+.service__link { color: inherit; text-decoration: none; }
+.service__link:hover { color: var(--colour-accent); text-decoration: underline; text-decoration-thickness: 1px; }
 .service__more { margin: 1.25rem 0 0; }
 
 /* Service page: wide image under the header */
@@ -269,6 +267,72 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 /* Common questions: native open and close, no animation */
+/*
+ * Service tiles (home page and "Other services"). The title link covers the
+ * whole tile. Hover changes colour only; nothing moves.
+ */
+.section-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 1rem 2rem;
+	margin-bottom: 2.5rem;
+}
+.section-header > div { flex: 1 1 24rem; }
+.section-header h2 { margin-bottom: 0; }
+.section-header__text { max-width: 40rem; margin: 1rem 0 0; }
+.section-header > .text-link { margin-bottom: 0.4rem; }
+
+.service-tiles {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+	gap: var(--gap);
+}
+.service-tile {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background: var(--colour-card);
+	border: var(--rule-thin);
+	border-top: 2px solid var(--colour-accent);
+	transition: border-color 200ms;
+}
+.section--alt .service-tile { background: var(--colour-paper); }
+.service-tile__image { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.service-tile__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding: 1.75rem 1.75rem 2rem;
+}
+.service-tile__number {
+	margin: 0 0 1.25rem;
+	font-family: var(--font-heading);
+	font-size: 2.25rem;
+	line-height: 1;
+	color: var(--colour-accent);
+}
+.service-tile__title { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.service-tile__link { color: var(--colour-ink); text-decoration: none; transition: color 200ms; }
+.service-tile__link::after { content: ""; position: absolute; inset: 0; }
+.service-tile__link:focus-visible { outline: none; }
+.service-tile:has(.service-tile__link:focus-visible) { outline: 2px solid var(--colour-accent); outline-offset: 3px; }
+.service-tile__text { margin: 0 0 1.5rem; color: var(--colour-ink-soft); }
+.service-tile__more {
+	align-self: flex-start;
+	margin-top: auto;
+	padding-bottom: 0.1rem;
+	font-weight: 600;
+	color: var(--colour-ink);
+	border-bottom: 2px solid var(--colour-line);
+	transition: border-color 200ms;
+}
+.service-tile__more::after { content: " \2192"; color: var(--colour-accent); }
+.service-tile:hover { border-color: var(--colour-accent); }
+.service-tile:hover .service-tile__link { color: var(--colour-accent); }
+.service-tile:hover .service-tile__more { border-bottom-color: var(--colour-accent); }
+
 .faq-list { max-width: 40rem; border-top: var(--rule-thick); }
 .faq { border-bottom: var(--rule-thin); }
 .faq summary {

@@ -64,6 +64,7 @@ Below 48rem (768px), a burger button replaces the header navigation.
 - **Sections:** an optional wide image (21:9, 4:3 on phones), then the overview, what's included (rule-divided columns, like the values), common questions and other services, all with the numbered section kickers.
 - **Common questions:** each question opens and closes in place, with a rust + or − on the right and rules between them. There's no animation.
 - **Services page:** each service title links to its page, with a "Find out more" text link under the description.
+- **Service tiles** (Home page and "Other services"): cream cards with a thin border and a rust top rule, an optional 3:2 image, a large rust serif number (01, 02, 03), a serif title, the service's introduction and "Find out more" with a rust arrow. The whole tile is clickable. On hover the border and title turn rust, and nothing moves.
 
 ## Blog
 

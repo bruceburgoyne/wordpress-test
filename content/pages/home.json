@@ -22,8 +22,14 @@
             }
         },
         "intro": {
-            "heading": "What we do",
+            "heading": "Our services",
             "text": "<p>We work alongside leadership teams to turn ambition into practical plans. Every project starts with listening, and ends with something you can use.</p>"
+        },
+        "services": {
+            "show": true,
+            "heading": "Our services",
+            "intro": "Three ways we can help, each tailored to where your organisation is today.",
+            "pages": []
         },
         "highlights": {
             "heading": "Why work with us",

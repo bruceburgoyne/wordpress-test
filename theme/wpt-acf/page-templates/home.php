@@ -61,6 +61,50 @@ $wpt_highlights = wpt_field( 'highlights' );
 	</section>
 <?php endif; ?>
 
+<?php
+// Services: tiles linking to each service page.
+// Until the Services tab is saved in WP Admin, show every service under "Our services".
+$wpt_services = wpt_field( 'services' );
+if ( ! is_array( $wpt_services ) ) {
+	$wpt_services = array( 'heading' => __( 'Our services', 'wpt-acf' ) );
+}
+$wpt_tiles = ( ! isset( $wpt_services['show'] ) || $wpt_services['show'] ) ? wpt_service_pages( $wpt_services['pages'] ?? array() ) : array();
+$wpt_svc_page = get_page_by_path( 'services' );
+if ( $wpt_tiles ) :
+	?>
+	<section class="section">
+		<div class="container">
+			<div class="section-header">
+				<div>
+					<?php if ( ! empty( $wpt_services['heading'] ) ) : ?>
+						<h2><?php echo esc_html( $wpt_services['heading'] ); ?></h2>
+					<?php endif; ?>
+					<?php if ( ! empty( $wpt_services['intro'] ) ) : ?>
+						<p class="section-header__text"><?php echo wpt_text( $wpt_services['intro'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
+					<?php endif; ?>
+				</div>
+				<?php if ( $wpt_svc_page && 'publish' === $wpt_svc_page->post_status ) : ?>
+					<a class="text-link" href="<?php echo esc_url( get_permalink( $wpt_svc_page ) ); ?>"><?php esc_html_e( 'All services', 'wpt-acf' ); ?></a>
+				<?php endif; ?>
+			</div>
+			<div class="service-tiles">
+				<?php
+				foreach ( $wpt_tiles as $wpt_i => $wpt_tile ) {
+					get_template_part(
+						'template-parts/service-tile',
+						null,
+						array(
+							'page'   => $wpt_tile,
+							'number' => $wpt_i + 1,
+						)
+					);
+				}
+				?>
+			</div>
+		</div>
+	</section>
+<?php endif; ?>
+
 <?php if ( ! empty( $wpt_highlights['items'] ) ) : ?>
 	<section class="section section--alt">
 		<div class="container">

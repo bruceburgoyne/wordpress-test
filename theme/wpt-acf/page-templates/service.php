@@ -3,8 +3,8 @@
  * Template Name: Service
  *
  * An individual service. Make the page a child of Services (Page attributes >
- * Parent), so its address is /services/{slug}/ and it appears under
- * "Other services" on its sibling pages.
+ * Parent), so its address is /services/{slug}/. It appears as a tile on the
+ * home page and under "Other services" on the other service pages.
  *
  * @package wpt-acf
  */
@@ -27,16 +27,13 @@ $wpt_overview = wpt_field( 'overview' );
 $wpt_included = wpt_field( 'included' );
 $wpt_faqs     = wpt_field( 'faqs' );
 
-// Other services: published sibling pages that use this template.
-$wpt_others = $wpt_parent ? get_pages(
-	array(
-		'parent'      => $wpt_parent,
-		'exclude'     => array( get_the_ID() ),
-		'meta_key'    => '_wp_page_template', // phpcs:ignore WordPress.DB.SlowDBQuery
-		'meta_value'  => 'page-templates/service.php', // phpcs:ignore WordPress.DB.SlowDBQuery
-		'sort_column' => 'menu_order,post_title',
-	)
-) : array();
+// Other services: every other published service page, numbered by its place in the full list.
+$wpt_others = array();
+foreach ( wpt_service_pages() as $wpt_i => $wpt_page ) {
+	if ( get_the_ID() !== $wpt_page->ID ) {
+		$wpt_others[ $wpt_i + 1 ] = $wpt_page;
+	}
+}
 ?>
 
 <?php if ( ! empty( $wpt_image['ID'] ) ) : ?>
@@ -112,16 +109,19 @@ $wpt_others = $wpt_parent ? get_pages(
 	<section class="section section--alt">
 		<div class="container">
 			<h2><?php esc_html_e( 'Other services', 'wpt-acf' ); ?></h2>
-			<div class="card-grid">
-				<?php foreach ( $wpt_others as $wpt_other ) : ?>
-					<?php $wpt_other_header = wpt_field( 'page_header', $wpt_other->ID ); ?>
-					<article class="card">
-						<h3><a class="card__link" href="<?php echo esc_url( get_permalink( $wpt_other ) ); ?>"><?php echo esc_html( get_the_title( $wpt_other ) ); ?></a></h3>
-						<?php if ( ! empty( $wpt_other_header['intro'] ) ) : ?>
-							<p><?php echo wpt_text( $wpt_other_header['intro'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
-						<?php endif; ?>
-					</article>
-				<?php endforeach; ?>
+			<div class="service-tiles">
+				<?php
+				foreach ( $wpt_others as $wpt_number => $wpt_other ) {
+					get_template_part(
+						'template-parts/service-tile',
+						null,
+						array(
+							'page'   => $wpt_other,
+							'number' => $wpt_number,
+						)
+					);
+				}
+				?>
 			</div>
 		</div>
 	</section>
