@@ -20,7 +20,7 @@ if ( $wpt_has_image ) {
 	$wpt_classes[] = 'post-card--image';
 }
 ?>
-<article <?php post_class( $wpt_classes ); ?> data-reveal>
+<article <?php post_class( $wpt_classes ); ?>>
 	<?php if ( $wpt_has_image ) : ?>
 		<a class="post-card__media" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
 			<?php

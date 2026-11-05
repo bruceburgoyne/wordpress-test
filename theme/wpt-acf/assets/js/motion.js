@@ -1,8 +1,12 @@
 /**
- * Scroll reveal for the "Bold agency" design.
+ * Scroll reveal for the Editorial design.
  *
  * Does nothing if the visitor prefers reduced motion or the browser lacks
  * IntersectionObserver, so content is always readable.
+ *
+ * Only elements matched below are hidden and revealed. Don't add
+ * data-reveal in templates: an element hidden that way is never observed,
+ * so it would stay invisible. Add its selector here instead.
  */
 ( function () {
 	'use strict';
@@ -22,7 +26,8 @@
 		'.steps__item',
 		'.split__image',
 		'.contact-list',
-		'.cta__inner > *'
+		'.cta__inner > *',
+		'.post-card'
 	];
 	var items = document.querySelectorAll( selectors.join( ',' ) );
 	if ( ! items.length ) {
