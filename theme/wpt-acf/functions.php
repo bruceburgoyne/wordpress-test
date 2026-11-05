@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WPT_VERSION', '0.5.1' );
+define( 'WPT_VERSION', '0.6.0' );
 
 require_once get_template_directory() . '/inc/editor.php';
 require_once get_template_directory() . '/inc/acf.php';
@@ -58,16 +58,7 @@ add_action(
 			$wpt_article_css = file_get_contents( get_template_directory() . '/assets/css/article.css' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 			wp_add_inline_style( 'wpt-main', '.article-body {' . $wpt_article_css . '}' );
 		}
-		wp_enqueue_script(
-			'wpt-motion',
-			get_template_directory_uri() . '/assets/js/motion.js',
-			array(),
-			WPT_VERSION,
-			array(
-				'in_footer' => true,
-				'strategy'  => 'defer',
-			)
-		);
+
 		wp_enqueue_script(
 			'wpt-menu',
 			get_template_directory_uri() . '/assets/js/menu.js',

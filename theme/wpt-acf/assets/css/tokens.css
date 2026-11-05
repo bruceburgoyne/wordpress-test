@@ -26,8 +26,7 @@
 	--rule-thick: 2px solid var(--colour-ink-soft);
 	--rule-thin: 1px solid var(--colour-line);
 
-	/* Motion */
-	--motion-duration: 500ms;
+	/* Motion: used by hover states and the mobile menu only */
 	--motion-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
 
 	/* Layout */

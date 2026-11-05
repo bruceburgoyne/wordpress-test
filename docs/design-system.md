@@ -18,7 +18,7 @@ Later the same day, the palette was softened to warm creams and browns. The head
 - **Services:** set out as numbered features. **Process steps:** numbered with Roman numerals.
 - **Team members:** set out like bylines, with the name in serif and the role in red capitals.
 - **Call to action:** styled as a large italic pull quote on a sand background.
-- **Motion:** headings fade up gently on load, and sections reveal as you scroll. Both stay subtle (16 to 20px, 500 to 700ms).
+- **Motion:** none on page content. There are no fade-ins on load, scroll reveals or image zooms, so everything is visible straight away. Only links and buttons change on hover (colour, underline, the button arrow), plus the mobile menu below.
 
 ## Colour
 
@@ -70,7 +70,7 @@ Articles reuse the same palette, type and rules, with a few additions.
 
 ## Accessibility
 
-- All motion sits inside `prefers-reduced-motion: no-preference`, and the mobile menu opens and closes instantly for visitors who prefer reduced motion. Scroll reveals only run when JavaScript confirms the visitor hasn't asked for reduced motion, so content is never hidden without JavaScript.
+- Page content never moves or hides, with or without JavaScript. The mobile menu opens and closes instantly for visitors who prefer reduced motion.
 - Focus ring: 2px red outline with offset. Buttons, tags and page numbers are at least 44px tall.
 - Articles have one H1 (the title). Headings in the editor are limited to H2 to H4 so the outline stays in order.
 - On small screens, the masthead doesn't stick, and the asymmetric grids stack into a single column.
