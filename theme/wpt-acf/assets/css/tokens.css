@@ -1,0 +1,38 @@
+/*
+ * Design tokens for the Editorial design system. Loaded on the site (before
+ * main.css) and in the block editor, so both use the same colours and type.
+ * See docs/design-system.md.
+ */
+
+:root {
+	/* Colour: warm, soft base (no pure blacks or greys) */
+	--colour-ink: #2b211b;        /* warm dark brown, headings: 14.1:1 on paper */
+	--colour-ink-soft: #5e5249;   /* body and supporting text: 6.8:1 on paper */
+	--colour-paper: #f7f2e9;      /* cream page background */
+	--colour-card: #fdfaf4;
+	--colour-muted: #efe7da;      /* sand, alternate sections */
+	--colour-line: #e2d8c8;
+	--colour-accent: #9a3412;     /* rust: 6.6:1 on paper, white text on it 7.3:1 */
+	--colour-accent-hover: #7c2d12;
+	--colour-dark: #3a2b22;       /* footer: deep warm brown */
+	--colour-accent-on-dark: #f0a37f; /* 6.6:1 on footer */
+	--radius: 4px;
+
+	/* Type */
+	--font-heading: "Libre Bodoni", Georgia, "Times New Roman", serif;
+	--font-body: "Public Sans", system-ui, sans-serif;
+
+	/* Rules */
+	--rule-thick: 2px solid var(--colour-ink-soft);
+	--rule-thin: 1px solid var(--colour-line);
+
+	/* Motion */
+	--motion-duration: 500ms;
+	--motion-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+	/* Layout */
+	--space: clamp(3.5rem, 7vw, 6.5rem);
+	--max: 76rem;
+	--gap: clamp(1.5rem, 3vw, 2.5rem);
+	--gutter: clamp(1rem, 5vw, 4rem);
+}

@@ -5,38 +5,7 @@
  * See docs/design-system.md. Plain CSS, no build step.
  */
 
-:root {
-	/* Colour: warm, soft base (no pure blacks or greys) */
-	--colour-ink: #2b211b;        /* warm dark brown, headings: 14.1:1 on paper */
-	--colour-ink-soft: #5e5249;   /* body and supporting text: 6.8:1 on paper */
-	--colour-paper: #f7f2e9;      /* cream page background */
-	--colour-card: #fdfaf4;
-	--colour-muted: #efe7da;      /* sand, alternate sections */
-	--colour-line: #e2d8c8;
-	--colour-accent: #9a3412;     /* rust: 6.6:1 on paper, white text on it 7.3:1 */
-	--colour-accent-hover: #7c2d12;
-	--colour-dark: #3a2b22;       /* footer: deep warm brown */
-	--colour-accent-on-dark: #f0a37f; /* 6.6:1 on footer */
-	--radius: 4px;
-
-	/* Type */
-	--font-heading: "Libre Bodoni", Georgia, "Times New Roman", serif;
-	--font-body: "Public Sans", system-ui, sans-serif;
-
-	/* Rules */
-	--rule-thick: 2px solid var(--colour-ink-soft);
-	--rule-thin: 1px solid var(--colour-line);
-
-	/* Motion */
-	--motion-duration: 500ms;
-	--motion-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
-
-	/* Layout */
-	--space: clamp(3.5rem, 7vw, 6.5rem);
-	--max: 76rem;
-	--gap: clamp(1.5rem, 3vw, 2.5rem);
-	--gutter: clamp(1rem, 5vw, 4rem);
-}
+/* Design tokens (colour, type, rules, motion, layout) live in tokens.css. */
 
 *,
 *::before,
@@ -124,7 +93,8 @@ a:hover { text-decoration-thickness: 2px; }
 .site-nav__list { display: flex; flex-wrap: wrap; gap: 0.25rem 2rem; list-style: none; margin: 0; padding: 0; }
 .site-nav__list a { font-size: 1.05rem; font-weight: 500; color: var(--colour-ink-soft); text-decoration: none; padding-block: 0.3rem; border-bottom: 2px solid transparent; }
 .site-nav__list a:hover { color: var(--colour-ink); }
-.site-nav__list .current-menu-item > a { color: var(--colour-ink); border-bottom-color: var(--colour-accent); }
+.site-nav__list .current-menu-item > a,
+.site-nav__list .current_page_parent > a { color: var(--colour-ink); border-bottom-color: var(--colour-accent); }
 @media (max-width: 40rem) {
 	/* The hero and the Contact link already cover this on small screens. */
 	.site-nav .site-nav__button { display: none; }
@@ -307,6 +277,240 @@ a:hover { text-decoration-thickness: 2px; }
 .cta p { margin: 0; font-size: 1.15rem; }
 .cta .button--light { background: var(--colour-accent); color: #fff; border-color: var(--colour-accent); }
 .cta .button--light:hover { background: var(--colour-accent-hover); border-color: var(--colour-accent-hover); }
+
+/*
+ * Blog: the article list (blog page and topic archives) and single articles.
+ * How blocks look inside an article lives in article.css.
+ */
+.page-header .lead p { margin: 0; }
+
+/* Topic filter */
+.topic-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1.75rem;
+	list-style: none;
+	margin: 0 0 2.75rem;
+	padding: 0;
+}
+.topic-nav a {
+	display: inline-block;
+	padding-block: 0.3rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--colour-ink-soft);
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+}
+.topic-nav a:hover { color: var(--colour-ink); }
+.topic-nav a[aria-current] { color: var(--colour-ink); border-bottom-color: var(--colour-accent); }
+
+.post-list { padding-block: calc(var(--space) * 0.6) var(--space); }
+.post-list__empty { font-size: 1.15rem; }
+
+/* Cards: a thick rule on top, optional image, topic and date, title, standfirst */
+.post-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+	gap: 3rem var(--gap);
+}
+.post-card {
+	display: flex;
+	flex-direction: column;
+	padding-top: 1.25rem;
+	border-top: var(--rule-thick);
+}
+.post-card__media { display: block; margin-bottom: 1.25rem; overflow: hidden; }
+.post-card__image { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.post-card__meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1rem;
+	margin: 0 0 0.75rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--colour-ink-soft);
+}
+.post-card__topic { color: var(--colour-accent); }
+.post-card__title { font-size: 1.6rem; line-height: 1.15; margin: 0 0 0.6rem; }
+.post-card__title a { color: var(--colour-ink); text-decoration: none; }
+.post-card__title a:hover { color: var(--colour-accent); text-decoration: underline; text-decoration-thickness: 1px; }
+.post-card__excerpt { margin: 0; font-size: 1rem; color: var(--colour-ink-soft); }
+
+/* Lead story: the newest article, larger, at the top of the blog page */
+.post-card--lead {
+	margin-bottom: calc(var(--space) * 0.7);
+	padding: 0 0 calc(var(--space) * 0.7);
+	border-top: 0;
+	border-bottom: var(--rule-thin);
+}
+.post-card--lead .post-card__body { max-width: 46rem; }
+.post-card--lead .post-card__title { font-size: clamp(2.25rem, 4.5vw, 3.75rem); line-height: 1.05; margin-bottom: 1rem; }
+.post-card--lead .post-card__excerpt {
+	margin-bottom: 1.75rem;
+	font-family: var(--font-heading);
+	font-size: clamp(1.2rem, 2vw, 1.45rem);
+	font-style: italic;
+	line-height: 1.45;
+	color: var(--colour-ink);
+}
+.post-card--lead .post-card__image { aspect-ratio: 4 / 3; }
+@media (min-width: 56rem) {
+	.post-card--lead.post-card--image {
+		display: grid;
+		grid-template-columns: 7fr 5fr;
+		column-gap: 4rem;
+		align-items: center;
+	}
+	.post-card--lead .post-card__media { margin: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+	.post-card__image { transition: transform 600ms var(--motion-ease); }
+	.post-card:hover .post-card__image { transform: scale(1.03); }
+}
+
+/* Page numbers */
+.pagination { margin-top: 3.5rem; padding-top: 1.5rem; border-top: var(--rule-thin); }
+.pagination .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+.pagination .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	min-height: 44px;
+	padding: 0 0.85rem;
+	font-weight: 600;
+	color: var(--colour-ink-soft);
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: var(--radius);
+}
+.pagination a.page-numbers:hover { color: var(--colour-ink); border-color: var(--colour-line); }
+.pagination .prev,
+.pagination .next { border-color: var(--colour-line); }
+.pagination .current { color: #fff; background: var(--colour-accent); }
+
+/*
+ * Single article. The header, image and body share one frame (64rem). Text
+ * sits in a 42rem column on the left of it, the asymmetric layout used
+ * across the site; wide images fill the frame and full images the screen.
+ */
+.article { overflow-x: clip; }
+.article-header,
+.article-image,
+.article-body,
+.article-footer {
+	width: min(100% - 2 * var(--gutter), 64rem);
+	margin-inline: auto;
+}
+.article-header { padding-block: calc(var(--space) * 0.8) 2.5rem; }
+.article-header > * { max-width: 52rem; }
+.article-header .kicker a { color: inherit; text-decoration: none; }
+.article-header .kicker a:hover { text-decoration: underline; }
+.article-header__title {
+	font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+	line-height: 1.04;
+	letter-spacing: -0.015em;
+	margin-bottom: 1.5rem;
+}
+.article-header__standfirst { max-width: 42rem; margin-bottom: 0; }
+.byline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 0;
+	max-width: 42rem;
+	margin: 2rem 0 0;
+	padding-top: 1rem;
+	font-size: 0.95rem;
+	border-top: var(--rule-thin);
+}
+.byline > * + *::before {
+	content: "\00B7";
+	margin-inline: 0.75rem;
+	color: var(--colour-accent);
+}
+@media (max-width: 30rem) {
+	/* On phones the byline wraps, so use spacing rather than dots. */
+	.byline { gap: 0.25rem 1.25rem; }
+	.byline > * + *::before { content: none; }
+}
+
+.article-image { margin-block: 0 3rem; }
+.article-image__img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.article-image figcaption { margin-top: 0.75rem; font-size: 0.875rem; color: var(--colour-ink-soft); }
+
+.article-body { padding-bottom: calc(var(--space) * 0.7); }
+.article-body > * { max-width: 42rem; }
+.article-body > :first-child { margin-top: 0; }
+.article-body > .alignwide { max-width: none; }
+.article-body > .alignfull {
+	max-width: none;
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+}
+.article-body > .alignfull figcaption { padding-inline: var(--gutter); }
+.article-body > .alignleft,
+.article-body > .alignright { max-width: min(45%, 19rem); margin-top: 0.4em; margin-bottom: 1em; }
+.article-body > .alignleft { float: left; margin-right: 2rem; }
+.article-body > .alignright { float: right; margin-left: 2rem; }
+.article-body > .aligncenter { margin-inline: auto; text-align: center; }
+.article-body::after { content: ""; display: block; clear: both; }
+
+/* Drop cap on the opening paragraph, as on the ACF pages */
+.article-body > p:first-child::first-letter {
+	float: left;
+	font-family: var(--font-heading);
+	font-size: 4.2em;
+	line-height: 0.85;
+	padding: 0.06em 0.12em 0 0;
+	color: var(--colour-accent);
+}
+
+/* Tags */
+.article-footer { padding-bottom: calc(var(--space) * 0.7); }
+.tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	max-width: 42rem;
+	list-style: none;
+	margin: 0;
+	padding: 1.5rem 0 0;
+	border-top: var(--rule-thin);
+}
+.tag-list a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding: 0 1rem;
+	font-size: 0.9rem;
+	color: var(--colour-ink-soft);
+	text-decoration: none;
+	border: 1px solid var(--colour-line);
+	border-radius: var(--radius);
+}
+.tag-list a:hover { color: var(--colour-accent); border-color: var(--colour-accent); }
+
+/* More articles */
+.related { padding-block: var(--space); background: var(--colour-card); border-top: var(--rule-thin); }
+.related__header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem 2rem;
+	margin-bottom: 2.5rem;
+}
+.related__header h2 { margin: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+	.article-header > * { animation: wpt-fade-up 700ms var(--motion-ease) both; }
+	.article-header > :nth-child(2) { animation-delay: 100ms; }
+	.article-header > :nth-child(n + 3) { animation-delay: 200ms; }
+	.article-image__img { animation: wpt-fade 1000ms var(--motion-ease) both; }
+}
 
 /* Contact */
 .contact-list { display: grid; grid-template-columns: max-content 1fr; gap: 0; margin: 1.5rem 0 2.5rem; border-top: var(--rule-thick); }
@@ -529,7 +733,8 @@ address { font-style: normal; }
 .mobile-panel__list a:focus-visible { color: var(--colour-accent); }
 .mobile-panel__list a:hover::after,
 .mobile-panel__list a:focus-visible::after,
-.mobile-panel__list .current-menu-item > a::after { transform: scaleX(1); }
+.mobile-panel__list .current-menu-item > a::after,
+.mobile-panel__list .current_page_parent > a::after { transform: scaleX(1); }
 .mobile-panel__list a:focus-visible { outline: none; }
 
 /* Swap the desktop nav for the burger on small screens (JavaScript only) */

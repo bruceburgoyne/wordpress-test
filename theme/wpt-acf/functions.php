@@ -7,11 +7,23 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WPT_VERSION', '0.4.0' );
+define( 'WPT_VERSION', '0.5.0' );
 
 require_once get_template_directory() . '/inc/editor.php';
 require_once get_template_directory() . '/inc/acf.php';
 require_once get_template_directory() . '/inc/helpers.php';
+require_once get_template_directory() . '/inc/blog.php';
+
+/**
+ * Google Fonts stylesheet: Libre Bodoni (headings) and Public Sans (body).
+ * Used on the site and in the block editor. Before going live, consider
+ * self-hosting these: loading from Google sends visitor IP addresses to Google.
+ *
+ * @return string
+ */
+function wpt_fonts_url() {
+	return 'https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;1,400;1,500&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap';
+}
 
 add_action(
 	'after_setup_theme',
@@ -31,20 +43,21 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		// Libre Bodoni (headings) and Public Sans (body). Before going live, consider
-		// self-hosting these: loading from Google sends visitor IP addresses to Google.
-		wp_enqueue_style(
-			'wpt-fonts',
-			'https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;1,400;1,500&family=Public+Sans:wght@400;600&display=swap',
-			array(),
-			null
-		);
+		wp_enqueue_style( 'wpt-fonts', wpt_fonts_url(), array(), null );
+		wp_enqueue_style( 'wpt-tokens', get_template_directory_uri() . '/assets/css/tokens.css', array(), WPT_VERSION );
 		wp_enqueue_style(
 			'wpt-main',
 			get_template_directory_uri() . '/assets/css/main.css',
-			array( 'wpt-fonts' ),
+			array( 'wpt-fonts', 'wpt-tokens' ),
 			WPT_VERSION
 		);
+
+		// Article content styles. The same file styles the block editor, so it is
+		// written without a wrapper and nested inside .article-body here.
+		if ( wpt_is_block_view() ) {
+			$wpt_article_css = file_get_contents( get_template_directory() . '/assets/css/article.css' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+			wp_add_inline_style( 'wpt-main', '.article-body {' . $wpt_article_css . '}' );
+		}
 		wp_enqueue_script(
 			'wpt-motion',
 			get_template_directory_uri() . '/assets/js/motion.js',

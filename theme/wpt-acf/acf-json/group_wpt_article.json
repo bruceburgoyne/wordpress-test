@@ -1,0 +1,45 @@
+{
+    "key": "group_wpt_article",
+    "title": "Article details",
+    "fields": [
+        {
+            "type": "textarea",
+            "name": "standfirst",
+            "label": "Standfirst",
+            "instructions": "One or two sentences that sum up the article. Shown under the title and on the blog page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "rows": 4,
+            "new_lines": "",
+            "default_value": "",
+            "maxlength": 280,
+            "placeholder": "",
+            "key": "field_article_standfirst",
+            "aria-label": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Structured fields that sit alongside the block editor on articles.",
+    "show_in_rest": 0,
+    "modified": 1762351200
+}

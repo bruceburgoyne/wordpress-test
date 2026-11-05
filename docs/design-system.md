@@ -1,6 +1,6 @@
 # Design system: Editorial
 
-Chosen on 4 November 2026 from the [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) catalogue (MIT licence). It replaces an earlier "Bold agency" (Brutalism) direction, which was tried and set aside the same day. All values live as CSS custom properties at the top of `theme/wpt-acf/assets/css/main.css`.
+Chosen on 4 November 2026 from the [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) catalogue (MIT licence). It replaces an earlier "Bold agency" (Brutalism) direction, which was tried and set aside the same day. All values live as CSS custom properties in `theme/wpt-acf/assets/css/tokens.css`, which the site and the block editor both load.
 
 Later the same day, the palette was softened to warm creams and browns. The header and home hero were also rebuilt to follow a reference mock-up supplied by Bruce.
 
@@ -58,8 +58,19 @@ Below 48rem (768px), a burger button replaces the header navigation.
 - **Without JavaScript:** the normal header links stay visible, and there's no burger.
 - Files: `header.php` (markup), `assets/js/menu.js` (behaviour), and the "Mobile menu" section at the end of `main.css`.
 
+## Blog
+
+Articles reuse the same palette, type and rules, with a few additions.
+
+- **Blog page:** the newest article leads, with the image on the left (7:5) and a large serif title. The rest sit in a grid of cards, each with a thick rule on top, an optional 3:2 image, the topic in rust capitals with the date, a serif title and the standfirst. A row of topic links sits above, with the current one underlined in rust.
+- **Article header:** topic in rust capitals, a large serif title, the standfirst in italic serif, and a byline (author, date, reading time) under a thin rule.
+- **Article layout:** text sits in a 42rem column on the left of a 64rem frame, the same asymmetric idea as the page grids. Wide images fill the frame, full-width images fill the screen, and right-aligned images sit in the margin on wide screens.
+- **Blocks:** the opening paragraph has the drop cap. Pull quotes are large italic serif with rust quote marks between a thick and a thin rule, like the call to action band. Quotes have a rust rule on the left. Lists have rust markers. Separators are a short rust rule. Tables use rules only. Buttons match the site's rust button.
+- **Editor:** the block editor shows the same fonts, colours and block styles (`tokens.css`, `editor.css` and `article.css`), so writers see roughly what readers will see. Colour, size and spacing controls are switched off in `theme.json`.
+
 ## Accessibility
 
 - All motion sits inside `prefers-reduced-motion: no-preference`, and the mobile menu opens and closes instantly for visitors who prefer reduced motion. Scroll reveals only run when JavaScript confirms the visitor hasn't asked for reduced motion, so content is never hidden without JavaScript.
-- Focus ring: 2px red outline with offset. Buttons are at least 44px tall.
+- Focus ring: 2px red outline with offset. Buttons, tags and page numbers are at least 44px tall.
+- Articles have one H1 (the title). Headings in the editor are limited to H2 to H4 so the outline stays in order.
 - On small screens, the masthead doesn't stick, and the asymmetric grids stack into a single column.

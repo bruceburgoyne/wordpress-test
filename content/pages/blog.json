@@ -1,0 +1,18 @@
+{
+    "title": "Blog",
+    "slug": "blog",
+    "template": "default",
+    "menu_order": 3,
+    "posts_page": true,
+    "fields": {
+        "page_header": {
+            "heading": "Thinking out loud",
+            "intro": "Short, practical articles on brand, purpose and communication, written for the people who have to put them into practice."
+        },
+        "cta": {
+            "heading": "Something here you want to talk through?",
+            "text": "We are always happy to have an informal conversation.",
+            "button": { "title": "Start a conversation", "url": "{{page:contact}}", "target": "" }
+        }
+    }
+}

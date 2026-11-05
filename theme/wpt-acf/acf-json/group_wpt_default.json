@@ -85,6 +85,11 @@
                 "param": "page_template",
                 "operator": "==",
                 "value": "default"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "posts_page"
             }
         ]
     ],
@@ -109,5 +114,5 @@
     "active": true,
     "description": "Fallback fields for pages using the default template.",
     "show_in_rest": 0,
-    "modified": 1762250000
+    "modified": 1762351200
 }

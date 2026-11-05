@@ -42,7 +42,10 @@ wp theme activate "$THEME_SLUG"
 wp rewrite structure '/%postname%/' --quiet
 wp rewrite flush --quiet
 
-# 4. Push pages, fields, settings and the menu.
+# 4. UK date format for article dates (for example, 3 November 2026).
+wp option update date_format 'j F Y' --quiet
+
+# 5. Push pages, fields, settings, the menu and the blog articles.
 wp eval-file "$REPO/scripts/seed.php" "$REPO/content"
 
 echo

@@ -5,8 +5,16 @@
  * Run with WP-CLI from the Local site shell:
  *   wp eval-file /path/to/wordpress-test/scripts/seed.php /path/to/wordpress-test/content
  *
- * Safe to run repeatedly: pages are matched by slug and updated in place.
- * Field values in the JSON overwrite whatever is in WordPress for those fields.
+ * To push only the blog (the blog page, the menu and the articles in
+ * content/posts), leaving the other pages and Site Settings alone:
+ *   wp eval-file /path/to/wordpress-test/scripts/seed.php /path/to/wordpress-test/content blog
+ *
+ * Safe to run repeatedly: pages and articles are matched by slug and updated
+ * in place. Values in the files overwrite whatever is in WordPress for those
+ * fields, so edits made in WP Admin to the same fields are replaced.
+ *
+ * Articles are content/posts/{slug}.json (title, date, topics, tags, ACF
+ * fields) plus content/posts/{slug}.html (the body, as block editor markup).
  *
  * In link URLs, "{{page:slug}}" is replaced with that page's permalink.
  *
@@ -18,6 +26,22 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 }
 
 $wpt_content_dir = isset( $args[0] ) ? rtrim( $args[0], '/' ) : dirname( __DIR__ ) . '/content';
+$wpt_mode        = isset( $args[1] ) ? $args[1] : 'all';
+if ( ! in_array( $wpt_mode, array( 'all', 'blog' ), true ) ) {
+	WP_CLI::error( "Unknown mode '{$wpt_mode}'. Use 'all' (the default) or 'blog'." );
+}
+
+// Act as the first administrator, so articles have an author and keep their block markup.
+$wpt_admins = get_users(
+	array(
+		'role'    => 'administrator',
+		'number'  => 1,
+		'orderby' => 'ID',
+	)
+);
+if ( $wpt_admins ) {
+	wp_set_current_user( $wpt_admins[0]->ID );
+}
 
 if ( ! function_exists( 'acf_add_options_page' ) ) {
 	WP_CLI::error( 'ACF Pro is not active. Install and activate it, then run this again.' );
@@ -107,10 +131,22 @@ function wpt_seed_save_fields( $fields, $map, $post_id, $label ) {
 }
 
 // 1. Create or update every page first, so {{page:slug}} links can resolve.
+//    In blog mode, only the blog page is written; the others are just looked up for the menu.
 $wpt_pages = array();
 foreach ( glob( $wpt_content_dir . '/pages/*.json' ) as $wpt_file ) {
 	$wpt_def = wpt_seed_read_json( $wpt_file );
 	$wpt_existing = get_page_by_path( $wpt_def['slug'] );
+
+	if ( 'blog' === $wpt_mode && empty( $wpt_def['posts_page'] ) ) {
+		if ( ! $wpt_existing ) {
+			WP_CLI::warning( "Page '{$wpt_def['title']}' does not exist yet, so it is left out of the menu. Run a full seed to create it." );
+			continue;
+		}
+		$wpt_def['id']          = $wpt_existing->ID;
+		$wpt_def['skip_fields'] = true;
+		$wpt_pages[]            = $wpt_def;
+		continue;
+	}
 
 	$wpt_postarr = array(
 		'post_type'   => 'page',
@@ -130,6 +166,12 @@ foreach ( glob( $wpt_content_dir . '/pages/*.json' ) as $wpt_file ) {
 	}
 	update_post_meta( $wpt_id, '_wp_page_template', $wpt_def['template'] );
 
+	// The blog page must be the Posts page before its ACF fields can be found.
+	if ( ! empty( $wpt_def['posts_page'] ) ) {
+		update_option( 'page_for_posts', $wpt_id );
+		WP_CLI::log( "Set '{$wpt_def['title']}' as the Posts page" );
+	}
+
 	$wpt_def['id'] = $wpt_id;
 	$wpt_pages[]   = $wpt_def;
 	WP_CLI::log( ( $wpt_existing ? 'Updated' : 'Created' ) . " page '{$wpt_def['title']}' (ID {$wpt_id})" );
@@ -144,6 +186,9 @@ usort(
 
 // 2. Fill each page's ACF fields.
 foreach ( $wpt_pages as $wpt_def ) {
+	if ( ! empty( $wpt_def['skip_fields'] ) ) {
+		continue;
+	}
 	$wpt_map = wpt_seed_field_map( array( 'post_id' => $wpt_def['id'] ) );
 	if ( ! $wpt_map ) {
 		WP_CLI::warning( "No ACF field groups found for '{$wpt_def['title']}'. Is the WPT ACF theme active?" );
@@ -160,7 +205,7 @@ foreach ( $wpt_pages as $wpt_def ) {
 
 // 3. Site Settings options page.
 $wpt_settings_file = $wpt_content_dir . '/site-settings.json';
-if ( file_exists( $wpt_settings_file ) ) {
+if ( 'all' === $wpt_mode && file_exists( $wpt_settings_file ) ) {
 	$wpt_map = wpt_seed_field_map( array( 'options_page' => 'site-settings' ) );
 	wpt_seed_save_fields( wpt_seed_read_json( $wpt_settings_file ), $wpt_map, 'option', 'Site Settings' );
 	WP_CLI::log( 'Updated Site Settings' );
@@ -189,4 +234,65 @@ $wpt_locations['primary'] = $wpt_menu_id;
 set_theme_mod( 'nav_menu_locations', $wpt_locations );
 WP_CLI::log( 'Rebuilt the Primary menu' );
 
-WP_CLI::success( count( $wpt_pages ) . ' pages pushed to WordPress.' );
+// 5. Articles: create or update by slug, with topics, tags and ACF fields.
+$wpt_post_count = 0;
+foreach ( glob( $wpt_content_dir . '/posts/*.json' ) as $wpt_file ) {
+	$wpt_def  = wpt_seed_read_json( $wpt_file );
+	$wpt_body = preg_replace( '/\.json$/', '.html', $wpt_file );
+	if ( ! file_exists( $wpt_body ) ) {
+		WP_CLI::warning( "No body file for '{$wpt_def['title']}' (expected {$wpt_body}), skipped." );
+		continue;
+	}
+	$wpt_existing = get_page_by_path( $wpt_def['slug'], OBJECT, 'post' );
+
+	$wpt_postarr = array(
+		'post_type'    => 'post',
+		'post_status'  => 'publish',
+		'post_title'   => $wpt_def['title'],
+		'post_name'    => $wpt_def['slug'],
+		'post_content' => wpt_seed_resolve_links( trim( file_get_contents( $wpt_body ) ) ), // phpcs:ignore WordPress.WP.AlternativeFunctions
+		'post_author'  => get_current_user_id(),
+	);
+	if ( ! empty( $wpt_def['date'] ) ) {
+		$wpt_postarr['post_date']     = $wpt_def['date'];
+		$wpt_postarr['post_date_gmt'] = get_gmt_from_date( $wpt_def['date'] );
+	}
+	if ( $wpt_existing ) {
+		$wpt_postarr['ID'] = $wpt_existing->ID;
+		$wpt_id            = wp_update_post( wp_slash( $wpt_postarr ), true );
+	} else {
+		$wpt_id = wp_insert_post( wp_slash( $wpt_postarr ), true );
+	}
+	if ( is_wp_error( $wpt_id ) ) {
+		WP_CLI::error( $wpt_id->get_error_message() );
+	}
+
+	$wpt_term_ids = array();
+	foreach ( $wpt_def['topics'] ?? array() as $wpt_topic ) {
+		$wpt_term = term_exists( $wpt_topic, 'category' );
+		if ( ! $wpt_term ) {
+			$wpt_term = wp_insert_term( $wpt_topic, 'category' );
+		}
+		if ( ! is_wp_error( $wpt_term ) ) {
+			$wpt_term_ids[] = (int) $wpt_term['term_id'];
+		}
+	}
+	if ( $wpt_term_ids ) {
+		wp_set_post_categories( $wpt_id, $wpt_term_ids );
+	}
+	wp_set_post_tags( $wpt_id, $wpt_def['tags'] ?? array() );
+
+	if ( ! empty( $wpt_def['fields'] ) ) {
+		$wpt_map = wpt_seed_field_map( array( 'post_id' => $wpt_id ) );
+		wpt_seed_save_fields( $wpt_def['fields'], $wpt_map, $wpt_id, $wpt_def['title'] );
+	}
+
+	++$wpt_post_count;
+	WP_CLI::log( ( $wpt_existing ? 'Updated' : 'Created' ) . " article '{$wpt_def['title']}' (ID {$wpt_id})" );
+}
+
+if ( 'blog' === $wpt_mode ) {
+	WP_CLI::success( "Blog page, menu and {$wpt_post_count} articles pushed to WordPress." );
+} else {
+	WP_CLI::success( count( $wpt_pages ) . " pages and {$wpt_post_count} articles pushed to WordPress." );
+}

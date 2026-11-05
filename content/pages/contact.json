@@ -2,7 +2,7 @@
     "title": "Contact",
     "slug": "contact",
     "template": "page-templates/contact.php",
-    "menu_order": 3,
+    "menu_order": 4,
     "fields": {
         "page_header": {
             "heading": "Contact us",

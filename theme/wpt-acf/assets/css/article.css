@@ -1,0 +1,206 @@
+/*
+ * Article content: how blocks look inside an article.
+ *
+ * One file, two uses:
+ * - On the site, functions.php nests it inside .article-body, so it only
+ *   touches article content and never the ACF pages.
+ * - In the block editor, WordPress scopes it to the editing canvas, so writers
+ *   see the same type, quotes, lists and images as readers.
+ *
+ * Keep selectors simple (no leading ">" combinators) so both uses work.
+ * Layout (column widths, wide and full images) lives in main.css.
+ */
+
+p,
+li {
+	font-size: 1.125rem;
+	line-height: 1.75;
+}
+p { margin: 0 0 1.4em; }
+strong { color: var(--colour-ink); }
+
+a {
+	color: var(--colour-accent);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+h2,
+h3,
+h4 {
+	color: var(--colour-ink);
+	margin: 2em 0 0.6em;
+}
+h2,
+h3 {
+	font-family: var(--font-heading);
+	font-weight: 500;
+	letter-spacing: -0.01em;
+}
+h2 {
+	font-size: clamp(1.75rem, 3vw, 2.25rem);
+	line-height: 1.15;
+}
+h3 {
+	font-size: 1.45rem;
+	line-height: 1.25;
+}
+h4 {
+	font-family: var(--font-body);
+	font-size: 0.85rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--colour-accent);
+}
+
+/* Lists, with rust markers */
+ul,
+ol {
+	margin: 0 0 1.4em;
+	padding-left: 1.4em;
+}
+li { margin-bottom: 0.4em; }
+li::marker { color: var(--colour-accent); }
+ol li::marker {
+	font-family: var(--font-heading);
+	font-weight: 500;
+}
+
+/* Quote: rust rule on the left, italic serif */
+.wp-block-quote {
+	margin: 2.25em 0;
+	padding: 0.2em 0 0.2em 1.5em;
+	border-left: 3px solid var(--colour-accent);
+}
+.wp-block-quote p {
+	font-family: var(--font-heading);
+	font-size: 1.35rem;
+	font-style: italic;
+	line-height: 1.5;
+	color: var(--colour-ink);
+	margin-bottom: 0.6em;
+}
+.wp-block-quote cite,
+.wp-block-pullquote cite {
+	display: block;
+	font-family: var(--font-body);
+	font-size: 0.8rem;
+	font-style: normal;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--colour-ink-soft);
+}
+
+/* Pull quote: large italic serif between rules, like the call to action band */
+.wp-block-pullquote {
+	margin: 2.75em 0;
+	padding: 1.75rem 0;
+	border-top: var(--rule-thick);
+	border-bottom: var(--rule-thin);
+	text-align: left;
+	font-size: inherit;
+	line-height: inherit;
+}
+.wp-block-pullquote blockquote { margin: 0; }
+.wp-block-pullquote p {
+	font-family: var(--font-heading);
+	font-size: clamp(1.65rem, 3vw, 2.2rem);
+	font-style: italic;
+	line-height: 1.25;
+	color: var(--colour-ink);
+	margin: 0 0 0.5em;
+}
+.wp-block-pullquote p::before {
+	content: "\201C";
+	color: var(--colour-accent);
+}
+.wp-block-pullquote p::after {
+	content: "\201D";
+	color: var(--colour-accent);
+}
+
+/* Images, galleries, video and embeds */
+.wp-block-image,
+.wp-block-gallery,
+.wp-block-video,
+.wp-block-embed { margin: 2.5em 0; }
+.wp-block-image img { border-radius: 0; }
+figcaption,
+.wp-element-caption {
+	margin-top: 0.75em;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: var(--colour-ink-soft);
+	text-align: left;
+}
+
+/* Separator: a short rust rule */
+.wp-block-separator {
+	width: 4rem;
+	margin: 3em 0;
+	border: 0;
+	border-top: 2px solid var(--colour-accent);
+	opacity: 1;
+}
+
+/* Table: rules only, no boxes */
+.wp-block-table { margin: 2.5em 0; }
+.wp-block-table table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 1rem;
+}
+.wp-block-table thead { border: 0; }
+.wp-block-table th,
+.wp-block-table td {
+	padding: 0.75em 1em 0.75em 0;
+	text-align: left;
+	vertical-align: top;
+	border: 0;
+	border-bottom: var(--rule-thin);
+}
+.wp-block-table thead th { border-bottom: var(--rule-thick); }
+.wp-block-table th { color: var(--colour-ink); font-weight: 600; }
+
+/* Buttons: the same rust button as the rest of the site */
+.wp-block-buttons { margin: 2em 0; }
+.wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding: 0.85rem 1.75rem;
+	font-family: var(--font-body);
+	font-size: 1.05rem;
+	font-weight: 600;
+	line-height: 1.2;
+	color: #fff;
+	background: var(--colour-accent);
+	border: 1px solid var(--colour-accent);
+	border-radius: var(--radius);
+	text-decoration: none;
+	transition: background-color 200ms, border-color 200ms;
+}
+.wp-block-button__link:hover {
+	color: #fff;
+	background: var(--colour-accent-hover);
+	border-color: var(--colour-accent-hover);
+}
+.is-style-outline .wp-block-button__link {
+	color: var(--colour-accent);
+	background: transparent;
+}
+.is-style-outline .wp-block-button__link:hover { color: #fff; background: var(--colour-accent); }
+
+/* Footnotes */
+.wp-block-footnotes {
+	margin-top: 3em;
+	padding-top: 1.25em;
+	border-top: var(--rule-thin);
+}
+.wp-block-footnotes li {
+	font-size: 0.9rem;
+	line-height: 1.6;
+}

@@ -1,0 +1,165 @@
+{
+    "key": "group_wpt_blog",
+    "title": "Blog page",
+    "fields": [
+        {
+            "type": "group",
+            "name": "page_header",
+            "label": "Blog header",
+            "instructions": "The heading and introduction at the top of the blog page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "Leave blank to use the page title.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_blog_page_header_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "intro",
+                    "label": "Introduction",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_blog_page_header_intro",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_blog_page_header",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "cta",
+            "label": "Call to action band",
+            "instructions": "Shown at the end of the blog page, topic pages and every article.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_blog_cta_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "text",
+                    "label": "Text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_blog_cta_text",
+                    "aria-label": ""
+                },
+                {
+                    "type": "link",
+                    "name": "button",
+                    "label": "Button",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "key": "field_blog_cta_button",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_blog_cta",
+            "aria-label": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "posts_page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "author",
+        "format",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": true,
+    "description": "Fields for the page set as the Posts page in Settings > Reading.",
+    "show_in_rest": 0,
+    "modified": 1762351200
+}

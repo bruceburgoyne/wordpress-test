@@ -1,0 +1,62 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.8/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": false,
+		"useRootPaddingAwareAlignments": false,
+		"layout": {
+			"contentSize": "42rem",
+			"wideSize": "64rem"
+		},
+		"color": {
+			"custom": false,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultDuotone": false,
+			"defaultGradients": false,
+			"defaultPalette": false,
+			"palette": [],
+			"gradients": [],
+			"duotone": [],
+			"background": false,
+			"text": false,
+			"link": false
+		},
+		"typography": {
+			"customFontSize": false,
+			"defaultFontSizes": false,
+			"fontSizes": [],
+			"fontFamilies": [],
+			"dropCap": false,
+			"fontStyle": false,
+			"fontWeight": false,
+			"letterSpacing": false,
+			"lineHeight": false,
+			"textDecoration": false,
+			"textTransform": false,
+			"writingMode": false
+		},
+		"spacing": {
+			"blockGap": false,
+			"margin": false,
+			"padding": false,
+			"customSpacingSize": false,
+			"defaultSpacingSizes": false,
+			"spacingSizes": []
+		},
+		"border": {
+			"color": false,
+			"radius": false,
+			"style": false,
+			"width": false
+		},
+		"shadow": {
+			"defaultPresets": false,
+			"presets": []
+		},
+		"dimensions": {
+			"aspectRatio": false,
+			"minHeight": false
+		}
+	}
+}

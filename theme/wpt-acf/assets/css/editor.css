@@ -1,0 +1,25 @@
+/*
+ * Block editor canvas: the page background, body text and article title,
+ * so writing in WordPress looks like the article on the site.
+ * WordPress scopes these rules to the editor, so "body" means the canvas.
+ * Block styles come from article.css, which the site uses too.
+ */
+
+body {
+	font-family: var(--font-body);
+	font-size: 1.0625rem;
+	line-height: 1.7;
+	color: var(--colour-ink-soft);
+	background: var(--colour-paper);
+}
+
+.editor-post-title,
+.wp-block-post-title {
+	font-family: var(--font-heading);
+	font-weight: 500;
+	font-size: clamp(2.5rem, 5vw, 3.75rem);
+	line-height: 1.05;
+	letter-spacing: -0.01em;
+	color: var(--colour-ink);
+	margin-bottom: 2rem;
+}
