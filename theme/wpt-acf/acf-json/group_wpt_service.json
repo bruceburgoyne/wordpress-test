@@ -1,0 +1,527 @@
+{
+    "key": "group_wpt_service",
+    "title": "Service page",
+    "fields": [
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Page header",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_service_tab_header",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "page_header",
+            "label": "Page header",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "Leave blank to use the page title.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_service_page_header_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "intro",
+                    "label": "Introduction",
+                    "instructions": "Also shown under this service in \"Other services\".",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_service_page_header_intro",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_service_page_header",
+            "aria-label": ""
+        },
+        {
+            "type": "image",
+            "name": "image",
+            "label": "Image",
+            "instructions": "Optional. Shown wide under the page header.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "preview_size": "medium",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "key": "field_service_image",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Overview",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_service_tab_overview",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "overview",
+            "label": "Overview",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_service_overview_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "wysiwyg",
+                    "name": "text",
+                    "label": "Text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "default_value": "",
+                    "key": "field_service_overview_text",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_service_overview",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "What's included",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_service_tab_included",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "included",
+            "label": "What's included",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_service_included_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "repeater",
+                    "name": "items",
+                    "label": "Items",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add item",
+                    "rows_per_page": 20,
+                    "pagination": 0,
+                    "sub_fields": [
+                        {
+                            "type": "text",
+                            "name": "title",
+                            "label": "Title",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_service_included_items_title",
+                            "aria-label": ""
+                        },
+                        {
+                            "type": "textarea",
+                            "name": "text",
+                            "label": "Text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_service_included_items_text",
+                            "aria-label": ""
+                        }
+                    ],
+                    "key": "field_service_included_items",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_service_included",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Questions",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_service_tab_faqs",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "faqs",
+            "label": "Common questions",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_service_faqs_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "repeater",
+                    "name": "items",
+                    "label": "Questions",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add question",
+                    "rows_per_page": 20,
+                    "pagination": 0,
+                    "sub_fields": [
+                        {
+                            "type": "text",
+                            "name": "question",
+                            "label": "Question",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_service_faqs_items_question",
+                            "aria-label": ""
+                        },
+                        {
+                            "type": "textarea",
+                            "name": "answer",
+                            "label": "Answer",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "key": "field_service_faqs_items_answer",
+                            "aria-label": ""
+                        }
+                    ],
+                    "key": "field_service_faqs_items",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_service_faqs",
+            "aria-label": ""
+        },
+        {
+            "type": "tab",
+            "name": "",
+            "label": "Call to action",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "key": "field_service_tab_cta",
+            "aria-label": ""
+        },
+        {
+            "type": "group",
+            "name": "cta",
+            "label": "Call to action band",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "type": "text",
+                    "name": "heading",
+                    "label": "Heading",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_service_cta_heading",
+                    "aria-label": ""
+                },
+                {
+                    "type": "textarea",
+                    "name": "text",
+                    "label": "Text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "key": "field_service_cta_text",
+                    "aria-label": ""
+                },
+                {
+                    "type": "link",
+                    "name": "button",
+                    "label": "Button",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "key": "field_service_cta_button",
+                    "aria-label": ""
+                }
+            ],
+            "key": "field_service_cta",
+            "aria-label": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/service.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "author",
+        "format",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": true,
+    "description": "Content areas for an individual service page. Set the page's Parent to Services.",
+    "show_in_rest": 0,
+    "modified": 1762358400
+}

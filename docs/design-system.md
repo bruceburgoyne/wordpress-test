@@ -58,6 +58,13 @@ Below 48rem (768px), a burger button replaces the header navigation.
 - **Without JavaScript:** the normal header links stay visible, and there's no burger.
 - Files: `header.php` (markup), `assets/js/menu.js` (behaviour), and the "Mobile menu" section at the end of `main.css`.
 
+## Service pages
+
+- **Header:** "Services" in rust capitals above the title, linking back to the Services page.
+- **Sections:** an optional wide image (21:9, 4:3 on phones), then the overview, what's included (rule-divided columns, like the values), common questions and other services, all with the numbered section kickers.
+- **Common questions:** each question opens and closes in place, with a rust + or − on the right and rules between them. There's no animation.
+- **Services page:** each service title links to its page, with a "Find out more" text link under the description.
+
 ## Blog
 
 Articles reuse the same palette, type and rules, with a few additions.

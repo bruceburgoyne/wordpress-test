@@ -5,7 +5,8 @@
  * Optional $args:
  * - post_id: read the fields from this post instead of the current one
  *            (the blog archive passes the Posts page).
- * - kicker:  small label above the heading.
+ * - kicker:     small label above the heading.
+ * - kicker_url: makes the label a link (service pages link back to Services).
  *
  * @package wpt-acf
  */
@@ -17,7 +18,9 @@ $wpt_heading = ! empty( $wpt_header['heading'] ) ? $wpt_header['heading'] : get_
 <section class="page-header">
 	<div class="container">
 		<div>
-			<?php if ( ! empty( $args['kicker'] ) ) : ?>
+			<?php if ( ! empty( $args['kicker'] ) && ! empty( $args['kicker_url'] ) ) : ?>
+				<p class="kicker"><a href="<?php echo esc_url( $args['kicker_url'] ); ?>"><?php echo esc_html( $args['kicker'] ); ?></a></p>
+			<?php elseif ( ! empty( $args['kicker'] ) ) : ?>
 				<p class="kicker"><?php echo esc_html( $args['kicker'] ); ?></p>
 			<?php endif; ?>
 			<h1><?php echo esc_html( $wpt_heading ); ?></h1>

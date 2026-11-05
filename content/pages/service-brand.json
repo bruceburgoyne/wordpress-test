@@ -1,0 +1,38 @@
+{
+    "title": "Brand",
+    "slug": "brand",
+    "parent": "services",
+    "template": "page-templates/service.php",
+    "menu_order": 2,
+    "fields": {
+        "page_header": {
+            "heading": "",
+            "intro": "Say who you are, clearly and consistently, in a way your audiences understand."
+        },
+        "overview": {
+            "heading": "What it is",
+            "text": "<p>A brand is more than a logo. It is what people understand about you, and why they choose you over someone else. When that understanding is fuzzy, every piece of communication has to work harder.</p><p>We help you define your purpose and values, decide where you stand, and turn that into messages and a tone of voice that your team can use with confidence.</p>"
+        },
+        "included": {
+            "heading": "What's included",
+            "items": [
+                { "title": "Purpose and values", "text": "Why you exist and what you stand for, written in words people will remember." },
+                { "title": "Positioning", "text": "Who you serve, what makes you different and the point of view you want to be known for." },
+                { "title": "Messaging", "text": "Key messages for each audience, so everyone tells the same story." },
+                { "title": "Tone of voice", "text": "Practical guidance on how you sound, with examples your team can follow." }
+            ]
+        },
+        "faqs": {
+            "heading": "Common questions",
+            "items": [
+                { "question": "Do we need a new logo?", "answer": "Not always. We look at what you have first, and only recommend design changes where they help people understand you better." },
+                { "question": "Can you work with our existing designers?", "answer": "Yes. We often hand our work to an in-house or external design team, and stay involved to make sure the thinking carries through." }
+            ]
+        },
+        "cta": {
+            "heading": "Want people to understand you better?",
+            "text": "We are always happy to have an informal conversation about your brand.",
+            "button": { "title": "Start a conversation", "url": "{{page:contact}}", "target": "" }
+        }
+    }
+}

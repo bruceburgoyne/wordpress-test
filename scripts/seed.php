@@ -5,9 +5,10 @@
  * Run with WP-CLI from the Local site shell:
  *   wp eval-file /path/to/wordpress-test/scripts/seed.php /path/to/wordpress-test/content
  *
- * To push only the blog (the blog page, the menu and the articles in
- * content/posts), leaving the other pages and Site Settings alone:
- *   wp eval-file /path/to/wordpress-test/scripts/seed.php /path/to/wordpress-test/content blog
+ * To push only part of the content, leaving the other pages and Site
+ * Settings alone, add a mode after the content folder:
+ *   ... seed.php /path/to/content blog      the blog page, the menu and content/posts
+ *   ... seed.php /path/to/content services  the individual service pages (children of Services)
  *
  * Safe to run repeatedly: pages and articles are matched by slug and updated
  * in place. Values in the files overwrite whatever is in WordPress for those
@@ -27,8 +28,39 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 
 $wpt_content_dir = isset( $args[0] ) ? rtrim( $args[0], '/' ) : dirname( __DIR__ ) . '/content';
 $wpt_mode        = isset( $args[1] ) ? $args[1] : 'all';
-if ( ! in_array( $wpt_mode, array( 'all', 'blog' ), true ) ) {
-	WP_CLI::error( "Unknown mode '{$wpt_mode}'. Use 'all' (the default) or 'blog'." );
+if ( ! in_array( $wpt_mode, array( 'all', 'blog', 'services' ), true ) ) {
+	WP_CLI::error( "Unknown mode '{$wpt_mode}'. Use 'all' (the default), 'blog' or 'services'." );
+}
+
+/**
+ * Whether this run should write a page, given the mode.
+ *
+ * The mode is passed in, not read as a global: WP-CLI runs this file inside
+ * a function, so its top-level variables are not globals.
+ *
+ * @param array  $def  Page definition.
+ * @param string $mode 'all', 'blog' or 'services'.
+ * @return bool
+ */
+function wpt_seed_writes_page( $def, $mode ) {
+	$wpt_mode = $mode;
+	if ( 'blog' === $wpt_mode ) {
+		return ! empty( $def['posts_page'] );
+	}
+	if ( 'services' === $wpt_mode ) {
+		return isset( $def['parent'] ) && 'services' === $def['parent'];
+	}
+	return true;
+}
+
+/**
+ * A page's path: "slug", or "parent/slug" for a child page.
+ *
+ * @param array $def Page definition.
+ * @return string
+ */
+function wpt_seed_page_path( $def ) {
+	return empty( $def['parent'] ) ? $def['slug'] : $def['parent'] . '/' . $def['slug'];
 }
 
 // Act as the first administrator, so articles have an author and keep their block markup.
@@ -98,6 +130,15 @@ function wpt_seed_resolve_links( $value ) {
 	if ( ! is_string( $value ) ) {
 		return $value;
 	}
+	// {{id:path}} gives a page's ID, for ACF page fields.
+	if ( preg_match( '/^\{\{id:([a-z0-9\-\/]+)\}\}$/', $value, $m ) ) {
+		$page = get_page_by_path( $m[1] );
+		if ( ! $page ) {
+			WP_CLI::warning( "Unknown page '{$m[1]}' left empty." );
+			return '';
+		}
+		return $page->ID;
+	}
 	return preg_replace_callback(
 		'/\{\{page:([a-z0-9\-\/]+)\}\}/',
 		function ( $m ) {
@@ -131,13 +172,20 @@ function wpt_seed_save_fields( $fields, $map, $post_id, $label ) {
 }
 
 // 1. Create or update every page first, so {{page:slug}} links can resolve.
-//    In blog mode, only the blog page is written; the others are just looked up for the menu.
+//    Top-level pages go first, so child pages can find their parent.
+//    In a partial mode, pages it doesn't cover are only looked up, for the menu.
+$wpt_defs = array_map( 'wpt_seed_read_json', glob( $wpt_content_dir . '/pages/*.json' ) );
+usort(
+	$wpt_defs,
+	function ( $a, $b ) {
+		return empty( $a['parent'] ) === empty( $b['parent'] ) ? 0 : ( empty( $a['parent'] ) ? -1 : 1 );
+	}
+);
 $wpt_pages = array();
-foreach ( glob( $wpt_content_dir . '/pages/*.json' ) as $wpt_file ) {
-	$wpt_def = wpt_seed_read_json( $wpt_file );
-	$wpt_existing = get_page_by_path( $wpt_def['slug'] );
+foreach ( $wpt_defs as $wpt_def ) {
+	$wpt_existing = get_page_by_path( wpt_seed_page_path( $wpt_def ) );
 
-	if ( 'blog' === $wpt_mode && empty( $wpt_def['posts_page'] ) ) {
+	if ( ! wpt_seed_writes_page( $wpt_def, $wpt_mode ) ) {
 		if ( ! $wpt_existing ) {
 			WP_CLI::warning( "Page '{$wpt_def['title']}' does not exist yet, so it is left out of the menu. Run a full seed to create it." );
 			continue;
@@ -155,6 +203,14 @@ foreach ( glob( $wpt_content_dir . '/pages/*.json' ) as $wpt_file ) {
 		'post_name'   => $wpt_def['slug'],
 		'menu_order'  => isset( $wpt_def['menu_order'] ) ? (int) $wpt_def['menu_order'] : 0,
 	);
+	if ( ! empty( $wpt_def['parent'] ) ) {
+		$wpt_parent = get_page_by_path( $wpt_def['parent'] );
+		if ( ! $wpt_parent ) {
+			WP_CLI::warning( "Parent page '{$wpt_def['parent']}' not found, so '{$wpt_def['title']}' was skipped. Run a full seed first." );
+			continue;
+		}
+		$wpt_postarr['post_parent'] = $wpt_parent->ID;
+	}
 	if ( $wpt_existing ) {
 		$wpt_postarr['ID'] = $wpt_existing->ID;
 		$wpt_id            = wp_update_post( $wpt_postarr, true );
@@ -211,13 +267,16 @@ if ( 'all' === $wpt_mode && file_exists( $wpt_settings_file ) ) {
 	WP_CLI::log( 'Updated Site Settings' );
 }
 
-// 4. Primary menu, rebuilt from the pages in menu order.
+// 4. Primary menu, rebuilt from the top-level pages in menu order.
 $wpt_menu = wp_get_nav_menu_object( 'Primary' );
 $wpt_menu_id = $wpt_menu ? $wpt_menu->term_id : wp_create_nav_menu( 'Primary' );
 foreach ( wp_get_nav_menu_items( $wpt_menu_id ) ?: array() as $wpt_item ) {
 	wp_delete_post( $wpt_item->ID, true );
 }
 foreach ( $wpt_pages as $wpt_def ) {
+	if ( ! empty( $wpt_def['parent'] ) ) {
+		continue;
+	}
 	wp_update_nav_menu_item(
 		$wpt_menu_id,
 		0,
@@ -236,7 +295,8 @@ WP_CLI::log( 'Rebuilt the Primary menu' );
 
 // 5. Articles: create or update by slug, with topics, tags and ACF fields.
 $wpt_post_count = 0;
-foreach ( glob( $wpt_content_dir . '/posts/*.json' ) as $wpt_file ) {
+$wpt_post_files = 'services' === $wpt_mode ? array() : glob( $wpt_content_dir . '/posts/*.json' );
+foreach ( $wpt_post_files as $wpt_file ) {
 	$wpt_def  = wpt_seed_read_json( $wpt_file );
 	$wpt_body = preg_replace( '/\.json$/', '.html', $wpt_file );
 	if ( ! file_exists( $wpt_body ) ) {
@@ -291,7 +351,9 @@ foreach ( glob( $wpt_content_dir . '/posts/*.json' ) as $wpt_file ) {
 	WP_CLI::log( ( $wpt_existing ? 'Updated' : 'Created' ) . " article '{$wpt_def['title']}' (ID {$wpt_id})" );
 }
 
-if ( 'blog' === $wpt_mode ) {
+if ( 'services' === $wpt_mode ) {
+	WP_CLI::success( 'Service pages and menu pushed to WordPress.' );
+} elseif ( 'blog' === $wpt_mode ) {
 	WP_CLI::success( "Blog page, menu and {$wpt_post_count} articles pushed to WordPress." );
 } else {
 	WP_CLI::success( count( $wpt_pages ) . " pages and {$wpt_post_count} articles pushed to WordPress." );

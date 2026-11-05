@@ -1,0 +1,37 @@
+{
+    "title": "Digital",
+    "slug": "digital",
+    "parent": "services",
+    "template": "page-templates/service.php",
+    "menu_order": 3,
+    "fields": {
+        "page_header": {
+            "heading": "",
+            "intro": "A website that does its job: easy for visitors to use and easy for your team to manage."
+        },
+        "overview": {
+            "heading": "What it is",
+            "text": "<p>Your website is often the first place people check you out. It needs to explain what you do quickly, help visitors find what they need and make it easy to get in touch.</p><p>We plan, write, design and build websites around those jobs, and set them up so your team can keep them up to date without specialist help.</p>"
+        },
+        "included": {
+            "heading": "What's included",
+            "items": [
+                { "title": "Structure and content", "text": "A clear site map and page plans, with copy written for the people you want to reach." },
+                { "title": "Design and build", "text": "A site that reflects your brand, works well on phones and meets accessibility standards." },
+                { "title": "Launch and support", "text": "Training for your team, a careful launch and help afterwards if you need it." }
+            ]
+        },
+        "faqs": {
+            "heading": "Common questions",
+            "items": [
+                { "question": "Which platform do you use?", "answer": "Usually WordPress, set up with simple, fixed fields for each part of a page, so editing is straightforward." },
+                { "question": "Can you improve our existing site?", "answer": "Yes. We can start with a review and recommend whether to improve what you have or start again." }
+            ]
+        },
+        "cta": {
+            "heading": "Is your website doing its job?",
+            "text": "Get in touch and we will take an honest look.",
+            "button": { "title": "Start a conversation", "url": "{{page:contact}}", "target": "" }
+        }
+    }
+}

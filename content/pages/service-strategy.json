@@ -1,0 +1,38 @@
+{
+    "title": "Strategy",
+    "slug": "strategy",
+    "parent": "services",
+    "template": "page-templates/service.php",
+    "menu_order": 1,
+    "fields": {
+        "page_header": {
+            "heading": "",
+            "intro": "A clear plan for the next three years, built with the people who will deliver it."
+        },
+        "overview": {
+            "heading": "What it is",
+            "text": "<p>Most organisations know roughly where they want to go. Fewer have agreed it, written it down and turned it into steps that people can act on. Our strategy work closes that gap.</p><p>We look at where you are today, help your leadership team agree where you want to be, and set out a realistic route between the two. The result is a short, plain document your whole team can use, not a report that sits in a drawer.</p>"
+        },
+        "included": {
+            "heading": "What's included",
+            "items": [
+                { "title": "Discovery", "text": "Conversations with your leadership, staff and clients, plus a review of what you already know." },
+                { "title": "Direction", "text": "Workshops to agree your goals, priorities and the things you will stop doing." },
+                { "title": "Roadmap", "text": "A phased plan with owners, milestones and simple ways to track progress." }
+            ]
+        },
+        "faqs": {
+            "heading": "Common questions",
+            "items": [
+                { "question": "How long does it take?", "answer": "It depends on the size of your organisation and how many people need to be involved. We agree a timeline with you before we start." },
+                { "question": "Who needs to be involved?", "answer": "Your leadership team for the key decisions, and a wider group of staff for the discovery conversations." },
+                { "question": "What happens afterwards?", "answer": "You own the plan. We can stay involved to review progress, but we design it so you do not need us to deliver it." }
+            ]
+        },
+        "cta": {
+            "heading": "Ready to plan what comes next?",
+            "text": "Tell us where you are, and we will suggest a sensible first step.",
+            "button": { "title": "Start a conversation", "url": "{{page:contact}}", "target": "" }
+        }
+    }
+}

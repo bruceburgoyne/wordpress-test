@@ -30,12 +30,21 @@ The content box is removed from pages, so ACF fields are the only way to edit a 
 |----------|----------------------------------|----------------------------------------------------------|
 | Home     | `page-templates/home.php`        | Hero (label, heading with highlighted ending, image), Introduction, Highlights (repeater), Call to action |
 | About    | `page-templates/about.php`       | Page header, Our story, Values, Team, Call to action      |
-| Services | `page-templates/services.php`    | Page header, Services (repeater), Process steps, Call to action |
+| Services | `page-templates/services.php`    | Page header, Services (repeater, each linked to its service page), Process steps, Call to action |
+| Strategy, Brand, Digital | `page-templates/service.php` (children of Services) | Page header, Image, Overview, What's included (repeater), Common questions (repeater), Call to action |
 | Contact  | `page-templates/contact.php`     | Page header, Contact details, Opening hours, Form shortcode, Map |
 | Blog     | `home.php` (the Posts page)      | Blog header, Call to action (also used under every article) |
 | Other    | default (`page.php`)             | Page header, Body text                                    |
 
 **Site Settings** (an ACF Pro options page in WP Admin) holds the logo, header button, phone, email, address, social links and footer text used across the site.
+
+## Service pages
+
+Each service has its own page at `/services/{name}/`, using the **Service** template.
+
+- **Adding one:** create a page, set **Template** to Service and **Parent** to Services, and fill in its fields. Then on the Services page, choose it in that service's **Service page** field. The service's title and a "Find out more" link will point to it.
+- **Other services:** each service page lists its sibling service pages automatically, using their introductions.
+- The header shows "Services" above the title as a link back, and the Services menu item stays underlined.
 
 ## Blog
 
@@ -60,6 +69,8 @@ To push only the blog (the Blog page, the menu and the articles in `content/post
 ```bash
 wp eval-file ~/Documents/GitHub/wordpress-test/scripts/seed.php ~/Documents/GitHub/wordpress-test/content blog
 ```
+
+Use `services` instead of `blog` to push only the service pages.
 
 Each article in `content/posts/` is a pair of files with the same name: a `.json` file (title, date, topics, tags and ACF fields) and a `.html` file holding the body as block editor markup. The four articles there are sample content.
 

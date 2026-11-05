@@ -224,6 +224,34 @@
                             "key": "field_services_services_items_image",
                             "aria-label": "",
                             "parent_repeater": "field_services_services_items"
+                        },
+                        {
+                            "type": "post_object",
+                            "name": "page",
+                            "label": "Service page",
+                            "instructions": "The page with full details of this service. Its title and a \"Find out more\" link will point there.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "page"
+                            ],
+                            "post_status": [
+                                "publish"
+                            ],
+                            "taxonomy": "",
+                            "return_format": "id",
+                            "multiple": 0,
+                            "allow_null": 1,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": [],
+                            "key": "field_services_services_items_page",
+                            "aria-label": ""
                         }
                     ],
                     "key": "field_services_services_items",
@@ -470,5 +498,5 @@
     "active": true,
     "description": "Content areas for the Services page template.",
     "show_in_rest": 0,
-    "modified": 1762250000
+    "modified": 1762358400
 }
