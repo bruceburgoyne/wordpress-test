@@ -21,6 +21,9 @@ $wpt_title  = ! empty( $wpt_header['heading'] ) ? $wpt_header['heading'] : get_t
 <article class="service-tile">
 	<?php if ( ! empty( $wpt_image['ID'] ) ) : ?>
 		<?php echo wp_get_attachment_image( $wpt_image['ID'], 'medium_large', false, array( 'class' => 'service-tile__image', 'alt' => '' ) ); ?>
+	<?php else : ?>
+		<?php // Keeps tiles in line when other services have an image. Hidden by CSS when none do. ?>
+		<div class="service-tile__placeholder" aria-hidden="true"><?php echo esc_html( mb_substr( $wpt_title, 0, 1 ) ); ?></div>
 	<?php endif; ?>
 	<div class="service-tile__body">
 		<?php if ( ! empty( $args['number'] ) ) : ?>

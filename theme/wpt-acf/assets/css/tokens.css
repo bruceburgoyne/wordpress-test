@@ -16,6 +16,8 @@
 	--colour-accent-hover: #7c2d12;
 	--colour-dark: #3a2b22;       /* footer: deep warm brown */
 	--colour-accent-on-dark: #f0a37f; /* 6.6:1 on footer */
+	--colour-on-dark: #d9cbb8;    /* footer text */
+	--colour-line-on-dark: #574337;
 	--radius: 4px;
 
 	/* Type */

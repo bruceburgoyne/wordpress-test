@@ -30,6 +30,8 @@ h1, h2, h3 {
 	letter-spacing: -0.01em;
 	margin: 0 0 0.5em;
 }
+h1, h2, h3 { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
 h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); }
 h2 { font-size: clamp(2rem, 4vw, 3rem); }
 h3 { font-size: 1.5rem; }
@@ -38,6 +40,7 @@ a { color: var(--colour-accent); text-decoration-thickness: 1px; text-underline-
 a:hover { text-decoration-thickness: 2px; }
 
 :focus-visible { outline: 2px solid var(--colour-accent); outline-offset: 3px; }
+::selection { background: var(--colour-accent); color: #fff; }
 
 .lead {
 	font-family: var(--font-heading);
@@ -106,6 +109,7 @@ a:hover { text-decoration-thickness: 2px; }
 .button {
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
 	gap: 0.6rem;
 	min-height: 44px;
 	padding: 0.85rem 1.75rem;
@@ -200,7 +204,8 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* Body copy with a drop cap on the first paragraph */
 .prose { max-width: 40rem; }
-.prose > p:first-child::first-letter {
+.prose > p:first-child::first-letter,
+.article-body > p:first-of-type::first-letter {
 	float: left;
 	font-family: var(--font-heading);
 	font-size: 4.2em;
@@ -212,7 +217,9 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* Highlights and values: columns divided by rules, not boxes */
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0; border-top: var(--rule-thin); }
-.card { padding: 1.75rem var(--gap) 1.75rem 0; counter-increment: card; }
+.card { display: flex; flex-direction: column; padding: 1.75rem var(--gap) 1.75rem 0; }
+/* Links line up along the bottom of the row, whatever the text length */
+.card > .text-link { align-self: flex-start; margin-top: auto; }
 .card + .card { padding-left: var(--gap); border-left: var(--rule-thin); }
 @media (max-width: 47rem) {
 	.card + .card { padding-left: 0; border-left: 0; border-top: var(--rule-thin); }
@@ -243,7 +250,7 @@ a:hover { text-decoration-thickness: 2px; }
 .service h3::before { content: counter(service, decimal-leading-zero) "  "; color: var(--colour-accent); white-space: pre; }
 .service .lead { font-size: 1.3rem; margin-bottom: 1rem; }
 @media (min-width: 56rem) {
-	.service > div { display: grid; grid-template-columns: 5fr 7fr; column-gap: 4rem; }
+	.service > div { display: grid; grid-template-columns: 5fr 7fr; align-content: start; column-gap: 4rem; }
 	.service > div > h3 { grid-row: span 2; }
 	.service > div > .service__more { grid-column: 2; }
 	.service--image { display: grid; grid-template-columns: 4fr 8fr; column-gap: 4rem; }
@@ -266,7 +273,6 @@ a:hover { text-decoration-thickness: 2px; }
 	.page-image__img { aspect-ratio: 4 / 3; }
 }
 
-/* Common questions: native open and close, no animation */
 /*
  * Service tiles (home page and "Other services"). The title link covers the
  * whole tile. Hover changes colour only; nothing moves.
@@ -300,6 +306,20 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .section--alt .service-tile { background: var(--colour-paper); }
 .service-tile__image { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+/* A service without an image shows its initial, so the tiles stay in line */
+.service-tile__placeholder {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 3 / 2;
+	font-family: var(--font-heading);
+	font-size: clamp(5rem, 9vw, 7rem);
+	font-style: italic;
+	line-height: 1;
+	color: var(--colour-accent);
+	background: var(--colour-muted);
+	border-bottom: var(--rule-thin);
+}
+.service-tiles:not(:has(.service-tile__image)) .service-tile__placeholder { display: none; }
 .service-tile__body {
 	display: flex;
 	flex: 1;
@@ -333,6 +353,7 @@ a:hover { text-decoration-thickness: 2px; }
 .service-tile:hover .service-tile__link { color: var(--colour-accent); }
 .service-tile:hover .service-tile__more { border-bottom-color: var(--colour-accent); }
 
+/* Common questions: native open and close, no animation */
 .faq-list { max-width: 40rem; border-top: var(--rule-thick); }
 .faq { border-bottom: var(--rule-thin); }
 .faq summary {
@@ -432,7 +453,7 @@ a:hover { text-decoration-thickness: 2px; }
 	padding-top: 1.25rem;
 	border-top: var(--rule-thick);
 }
-.post-card__media { display: block; margin-bottom: 1.25rem; overflow: hidden; }
+.post-card__media { display: block; margin-bottom: 1.25rem; }
 .post-card__image { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
 .post-card__meta {
 	display: flex;
@@ -566,16 +587,6 @@ a:hover { text-decoration-thickness: 2px; }
 .article-body > .aligncenter { margin-inline: auto; text-align: center; }
 .article-body::after { content: ""; display: block; clear: both; }
 
-/* Drop cap on the opening paragraph, as on the ACF pages */
-.article-body > p:first-child::first-letter {
-	float: left;
-	font-family: var(--font-heading);
-	font-size: 4.2em;
-	line-height: 0.85;
-	padding: 0.06em 0.12em 0 0;
-	color: var(--colour-accent);
-}
-
 /* Tags */
 .article-footer { padding-bottom: calc(var(--space) * 0.7); }
 .tag-list {
@@ -619,21 +630,21 @@ a:hover { text-decoration-thickness: 2px; }
 .contact-list dd { padding: 0.9rem 0; border-bottom: var(--rule-thin); margin: 0; }
 .contact-list dt { padding-right: 2rem; color: var(--colour-ink-soft); }
 address { font-style: normal; }
-.hours { border-collapse: collapse; width: 100%; border-top: var(--rule-thick); }
+.hours { font-variant-numeric: tabular-nums; border-collapse: collapse; width: 100%; border-top: var(--rule-thick); }
 .hours th, .hours td { text-align: left; padding: 0.75rem 0; border-bottom: var(--rule-thin); }
 .hours th { font-weight: 600; padding-right: 1.5rem; }
-.notice { padding: 1rem 1.25rem; background: var(--colour-card); border-left: 3px solid var(--colour-accent); }
+.notice { padding: 1rem 1.25rem; background: var(--colour-card); border: var(--rule-thin); border-top: 2px solid var(--colour-accent); }
 .map { border-top: var(--rule-thick); }
 .map iframe { display: block; width: 100%; height: 26rem; border: 0; filter: grayscale(1); }
 
 /* Footer */
-.site-footer { background: var(--colour-dark); color: #d9cbb8; padding-block: 3.5rem 2rem; }
+.site-footer { background: var(--colour-dark); color: var(--colour-on-dark); padding-block: 3.5rem 2rem; }
 .site-footer a { color: var(--colour-paper); }
 .site-footer a:hover { color: var(--colour-accent-on-dark); }
 .site-footer__grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 .site-footer__name { font-family: var(--font-heading); font-size: 2rem; line-height: 1; color: var(--colour-paper); }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
-.site-footer__small { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #574337; font-size: 0.875rem; }
+.site-footer__small { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--colour-line-on-dark); font-size: 0.875rem; }
 
 /*
  * Mobile menu (below 48rem, only when JavaScript is running).
@@ -730,6 +741,10 @@ address { font-style: normal; }
 /* The page is pushed across by the panel's width */
 .site-wrap {
 	position: relative;
+	/* Keeps the footer at the foot of the window on short pages */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	transition: transform var(--panel-duration) var(--panel-ease);
 }
 .menu-open .site-wrap { transform: translateX(var(--panel-width)); }
@@ -737,6 +752,7 @@ address { font-style: normal; }
 .menu-open body { overflow: hidden; }
 
 /* Soft wash over the pushed page; clicking it closes the menu */
+.site-main { flex: 1; }
 .site-wrap::after {
 	content: "";
 	position: absolute;

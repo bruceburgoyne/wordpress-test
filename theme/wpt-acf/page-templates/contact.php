@@ -72,7 +72,8 @@ $wpt_iframe_tags = array(
 		</div>
 
 		<div>
-			<?php if ( ! empty( $wpt_form['heading'] ) ) : ?>
+			<?php // Without a form, the heading would sit over nothing, so only editors see it (with the notice). ?>
+			<?php if ( ! empty( $wpt_form['heading'] ) && ( ! empty( $wpt_form['shortcode'] ) || current_user_can( 'edit_pages' ) ) ) : ?>
 				<h2><?php echo esc_html( $wpt_form['heading'] ); ?></h2>
 			<?php endif; ?>
 			<?php if ( ! empty( $wpt_form['shortcode'] ) ) : ?>

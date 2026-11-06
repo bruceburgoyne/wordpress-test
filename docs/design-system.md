@@ -36,6 +36,8 @@ A warm, soft palette with no pure blacks or greys. The values are sampled from t
 | Accent hover | `#7C2D12` | Button hover | |
 | Dark | `#3A2B22` | Footer (deep warm brown) | Cream text on it 12.2:1 |
 | Accent on dark | `#F0A37F` | Footer link hover | 6.6:1 on dark |
+| On dark | `#D9CBB8` | Footer text | |
+| Line on dark | `#574337` | Footer rule | |
 
 ## Type
 
@@ -64,7 +66,7 @@ Below 48rem (768px), a burger button replaces the header navigation.
 - **Sections:** an optional wide image (21:9, 4:3 on phones), then the overview, what's included (rule-divided columns, like the values), common questions and other services, all with the numbered section kickers.
 - **Common questions:** each question opens and closes in place, with a rust + or − on the right and rules between them. There's no animation.
 - **Services page:** each service title links to its page, with a "Find out more" text link under the description.
-- **Service tiles** (Home page and "Other services"): cream cards with a thin border and a rust top rule, an optional 3:2 image, a large rust serif number (01, 02, 03), a serif title, the service's introduction and "Find out more" with a rust arrow. The whole tile is clickable. On hover the border and title turn rust, and nothing moves.
+- **Service tiles** (Home page and "Other services"): cream cards with a thin border and a rust top rule, an optional 3:2 image, a large rust serif number (01, 02, 03), a serif title, the service's introduction and "Find out more" with a rust arrow. The whole tile is clickable. On hover the border and title turn rust, and nothing moves. A service without an image shows its initial in large rust italic on sand, so the tiles stay in line; when no service has an image, the tiles have none.
 
 ## Blog
 
@@ -82,3 +84,11 @@ Articles reuse the same palette, type and rules, with a few additions.
 - Focus ring: 2px red outline with offset. Buttons, tags and page numbers are at least 44px tall.
 - Articles have one H1 (the title). Headings in the editor are limited to H2 to H4 so the outline stays in order.
 - On small screens, the masthead doesn't stick, and the asymmetric grids stack into a single column.
+
+## Finishing details
+
+- Headings use balanced line breaks, and paragraphs avoid a single word on the last line.
+- Selected text is white on rust.
+- On short pages, the footer sits at the foot of the window.
+- Links in rule-divided columns line up along the bottom of the row.
+- On the Contact page, the form heading only shows when there is a form (editors see it with a reminder to add one).
